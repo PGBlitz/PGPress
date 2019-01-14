@@ -1,0 +1,18 @@
+- name: Deploy Wordpress Database
+  docker_container:
+    name: "wordpress-{{wpid.stdout}}-db"
+    image: mariadb
+    pull: yes
+    published_ports:
+      - "127.0.0.1:10{{wpport.stdout}}:3306"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/opt/appdata/wordpress/{{wpid.stdout}}-db:/var/lib/mysql"
+    env:
+      MYSQL_ROOT_PASSWORD: "mYsupERbigPas2WorD"
+    networks:
+      - name: plexguide
+        aliases:
+          - "wordpress-{{wpid.stdout}}-db"
+    restart_policy: always
+    state: started
