@@ -53,7 +53,7 @@
         image: '{{image}}'
         pull: yes
         links:
-          - "wordpress-{{wp_id.stdout}}-db:mysql"
+          - "wp-{{wp_id.stdout}}-db:mysql"
         published_ports:
           # - "9{{wp_port.stdout}}:80"
           - '127.0.0.1:{{extport}}:{{intport}}'
