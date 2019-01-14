@@ -6,14 +6,10 @@
 # GNU:        General Public License v3.0
 ################################################################################
 ---
-- hosts: localhost
-  gather_facts: false
-  tasks:
-    # FACTS #######################################################################
-    - name: WordPress ID
-      shell: "cat /tmp/wp_id"
-      register: wp_id
+- name: WordPress ID
+  shell: "cat /tmp/wp_id"
+  register: wp_id
 
-    - name: WordPress Port
-      shell: "cat /tmp/wp_port"
-      register: wp_port
+- name: WordPress Port
+  shell: "cat /tmp/wp_port"
+  register: wp_port
