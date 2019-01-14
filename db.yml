@@ -16,7 +16,7 @@
     # FACTS #######################################################################
     - name: Deploy Wordpress Database
       docker_container:
-        name: "wordpress-{{wpid.stdout}}-db"
+        name: "wordpress-{{wp_id.stdout}}-db"
         image: mariadb
         pull: yes
         published_ports:
