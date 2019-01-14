@@ -9,10 +9,14 @@
 - hosts: localhost
   gather_facts: false
   tasks:
+    # WP CORE (MANDATORY) #########################################################
+    - name: 'Including cron job'
+      include_tasks: '/opt/pgpress/pgpresscore.yml'
+
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
-        pgrole: 'wp-{{wpid.stdout}}'
+        pgrole: 'wp-{{wp_id.stdout}}'
         intport: '80'
         extport: '10000'
         image: 'wordpress'
@@ -27,12 +31,12 @@
         pg_labels:
           traefik.enable: 'true'
           traefik.port: '{{intport}}'
-          traefik.frontend.rule: 'Host:{{wpid.stdout}}.{{domain.stdout}}'
+          traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
 
     - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
-          - /opt/appdata/wordpress/{{wpid.stdout}}:/var/www/html
+          - /opt/appdata/wordpress/{{wp_id.stdout}}:/var/www/html
           - /etc/localtime:/etc/localtime:ro
 
     - name: 'Setting PG ENV'
@@ -49,9 +53,9 @@
         image: '{{image}}'
         pull: yes
         links:
-          - "wordpress-{{wpid.stdout}}-db:mysql"
+          - "wordpress-{{wp_id.stdout}}-db:mysql"
         published_ports:
-          # - "9{{wpport.stdout}}:80"
+          # - "9{{wp_port.stdout}}:80"
           - '127.0.0.1:{{extport}}:{{intport}}'
         volumes: '{{pg_volumes}}'
         env: '{{pg_env}}'
@@ -59,5 +63,5 @@
         networks:
           - name: plexguide
             aliases:
-              - "wp-{{wpid.stdout}}"
+              - "wp-{{wp_id.stdout}}"
         state: started

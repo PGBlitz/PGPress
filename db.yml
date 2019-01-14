@@ -1,18 +1,34 @@
-- name: Deploy Wordpress Database
-  docker_container:
-    name: "wordpress-{{wpid.stdout}}-db"
-    image: mariadb
-    pull: yes
-    published_ports:
-      - "127.0.0.1:10{{wpport.stdout}}:3306"
-    volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/opt/appdata/wordpress/{{wpid.stdout}}-db:/var/lib/mysql"
-    env:
-      MYSQL_ROOT_PASSWORD: "mYsupERbigPas2WorD"
-    networks:
-      - name: plexguide
-        aliases:
-          - "wordpress-{{wpid.stdout}}-db"
-    restart_policy: always
-    state: started
+#!/bin/bash
+#
+# Title:      PlexGuide (Reference Title File)
+# Author(s):  Admin9705
+# URL:        https://plexguide.com - http://github.plexguide.com
+# GNU:        General Public License v3.0
+################################################################################
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    # WP CORE (MANDATORY) #########################################################
+    - name: 'Including cron job'
+      include_tasks: '/opt/pgpress/pgpresscore.yml'
+
+    # FACTS #######################################################################
+    - name: Deploy Wordpress Database
+      docker_container:
+        name: "wordpress-{{wpid.stdout}}-db"
+        image: mariadb
+        pull: yes
+        published_ports:
+          - "127.0.0.1:10{{wp_port.stdout}}:3306"
+        volumes:
+          - "/etc/localtime:/etc/localtime:ro"
+          - "/opt/appdata/wordpress/{{wp_id.stdout}}-db:/var/lib/mysql"
+        env:
+          MYSQL_ROOT_PASSWORD: "mYsupERbigPas2WorD"
+        networks:
+          - name: plexguide
+            aliases:
+              - "wp-{{wp_id.stdout}}-db"
+        restart_policy: always
+        state: started
