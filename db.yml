@@ -21,7 +21,7 @@
         pull: yes
         exponse: 3306
         #published_ports:
-          - "127.0.0.1:10{{wp_port.stdout}}:3306"
+        #  - "127.0.0.1:10{{wp_port.stdout}}:3306"
         volumes:
           - "/etc/localtime:/etc/localtime:ro"
           - "/opt/appdata/wordpress/{{wp_id.stdout}}-db:/var/lib/mysql"
