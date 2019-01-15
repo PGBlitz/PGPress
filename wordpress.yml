@@ -53,7 +53,7 @@
         image: '{{image}}'
         pull: yes
         links:
-          - "wpdb-{{wp_id.stdout}}-db:mysql"
+          - "wpdb-{{wp_id.stdout}}:mysql"
         published_ports:
           # - "9{{wp_port.stdout}}:80"
           - '{{extport}}:{{intport}}'
