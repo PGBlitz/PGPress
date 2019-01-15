@@ -17,11 +17,11 @@ tee <<-EOF
 NOTE: Use only for testing. A Final PG update will be set to exempt
 WordPress Containers from the other Containers.
 
-[1] Instance: Deploy a New Instance
-[2] Instance: View Deployed Containers
-[3] Instance: Backup & Restore         [NOT READY]
-[4] Instance: Set an Instance as TLD   [NOT READY]
-[5] Instance: Destroy an Instance      [NOT READY]
+[1] WordPress: Deploy a New Site
+[2] WordPress: View Deployed Sites
+[3] WordPress: Backup & Restore        [NOT READY]
+[4] WordPress: Set a Top Level Domain  [NOT READY]
+[5] WordPress: Destroy a Website       [NOT READY]
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -93,6 +93,44 @@ echo "$port" > /tmp/wp_port
 ansible-playbook /opt/pgpress/db.yml
 ansible-playbook /opt/pgpress/wordpress.yml
 
+}
+
+viewcontainers () {
+
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
+
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
+
+num=0
+while read p; do
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
+  num=$[num+1]
+  if [ "$num" == 7 ]; then
+    num=0
+    echo " " >> /var/plexguide/tmp.format.containerlist
+  fi
+done </var/plexguide/tmp.containerlist
+
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PG Press                            📓 Reference: pgpress.plexguide.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 WP Containers Detected Running
+
+$containerlist
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
+read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
 }
 
 viewcontainers () {
