@@ -19,7 +19,8 @@
         name: "wp-{{wp_id.stdout}}-db"
         image: mariadb
         pull: yes
-        published_ports:
+        exponse: 3306
+        #published_ports:
           - "127.0.0.1:10{{wp_port.stdout}}:3306"
         volumes:
           - "/etc/localtime:/etc/localtime:ro"
