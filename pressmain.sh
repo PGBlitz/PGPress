@@ -15,7 +15,7 @@ tee <<-EOF
 NOTE: Use only for testing. A Final PG update will be set to exempt
 WordPress Containers from the other Containers.
 
-[1] Instance: Deploy a New Instance    [NOT READY]
+[1] Instance: Deploy a New Instance
 [2] Instance: View Deployed Containers [NOT READY]
 [3] Instance: Backup & Restore         [NOT READY]
 [4] Instance: Set an Instance as TLD   [NOT READY]
