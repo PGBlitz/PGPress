@@ -65,3 +65,4 @@
             aliases:
               - "wp-{{wp_id.stdout}}"
         state: started
+        labels: '{{pg_labels}}'
