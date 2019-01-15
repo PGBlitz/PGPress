@@ -26,7 +26,7 @@ read -p 'Type a Selection | Press [ENTER]: ' typed < /dev/tty
 
 case $typed in
     1 )
-        initial ;;
+        deploywp ;;
     z )
         exit ;;
     Z )
@@ -34,6 +34,24 @@ case $typed in
     * )
         mainbanner ;;
 esac
+}
+
+deploywp () {
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 Setting a WordPress ID / SubDomain
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Type the name for the subdomain wordpress instance. Instance can later be
+turned to operate at the TLD (Top Level Domain). Keep it all lowercase and
+with no breaks in space.
+
+EOF
+
+read -p '↘️  Type Subdomain | Press [ENTER]: ' typed < /dev/tty
+
 }
 
 mainbanner
