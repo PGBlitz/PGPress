@@ -99,6 +99,10 @@ viewcontainers () {
 
 docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+
 num=0
 while read p; do
   echo -n $p >> /var/plexguide/tmp.format.containerlist
