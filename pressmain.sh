@@ -50,7 +50,39 @@ with no breaks in space.
 
 EOF
 
-read -p '↘️  Type Subdomain | Press [ENTER]: ' typed < /dev/tty
+read -p '↘️  Type Subdomain | Press [ENTER]: ' subdomain < /dev/tty
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 Setting a Port
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What port do you want your server to utilize? Type a 5 digit port that is
+greater than 10000, but less than 60000. Ensure the port is not blocked
+and/or is not in use!
+
+EOF
+
+read -p '↘️  Type a Port Number | Press [ENTER]: ' port < /dev/tty
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 Deploying WordPress Instance: $subdomain
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What port should the server utilize? Type a 5 digit port that is greater
+than 10000, but less than 60000. Ensure the port is not blocked and/or is
+not in use!
+
+EOF
+
+echo "$subdomain" > /tmp/wp_port
+echo "$port" > /tmp/wp_port
+
+ansible-playbook /opt/pgpress/db.yml
+ansible-playbook /opt/pgpress/wordpress.yml
 
 }
 
