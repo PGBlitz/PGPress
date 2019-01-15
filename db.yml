@@ -19,7 +19,7 @@
         name: "wp-{{wp_id.stdout}}-db"
         image: mariadb
         pull: yes
-        exponse: 3306
+        expose: 3306
         #published_ports:
         #  - "127.0.0.1:10{{wp_port.stdout}}:3306"
         volumes:
