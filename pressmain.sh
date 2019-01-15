@@ -36,6 +36,9 @@ case $typed in
     2 )
         viewcontainers
         mainbanner ;;
+    5 )
+        deploycontainers
+        mainbanner ;;
     z )
         exit ;;
     Z )
@@ -133,7 +136,7 @@ EOF
 read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
 }
 
-viewcontainers () {
+destroycontainers () {
 
 docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
