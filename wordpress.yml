@@ -18,7 +18,7 @@
       set_fact:
         pgrole: 'wp-{{wp_id.stdout}}'
         intport: '80'
-        extport: '10005'
+        extport: '{{wp_port.stdout}}'
         image: 'wordpress'
 
     # CORE (MANDATORY) ############################################################
