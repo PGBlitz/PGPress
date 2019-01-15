@@ -102,12 +102,12 @@ echo $containerlist > /var/plexguide/tmp.containerlist
 
 num=0
 while read p; do
-  echo -n $p >> /tmp.format.containerlist
-  echo -n " " >> /tmp.format.containerlist
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /tmp.format.containerlist
+    echo " " >> /var/plexguide/tmp.format.containerlist
   fi
 done </var/plexguide/tmp.containerlist
 
