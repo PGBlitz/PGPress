@@ -5,6 +5,9 @@
 # URL:        https://plexguide.com - http://github.plexguide.com
 # GNU:        General Public License v3.0
 ################################################################################
+mainbanner
+
+# FUNCTIONS BELOW ##############################################################
 mainbanner () {
 tee <<-EOF
 
@@ -29,7 +32,11 @@ read -p 'Type a Selection | Press [ENTER]: ' typed < /dev/tty
 
 case $typed in
     1 )
-        deploywp ;;
+        deploywp
+        mainbanner ;;
+    2 )
+        viewcontainers 
+        mainbanner ;;
     z )
         exit ;;
     Z )
@@ -89,4 +96,36 @@ ansible-playbook /opt/pgpress/wordpress.yml
 
 }
 
-mainbanner
+viewcontainers () {
+
+containerlist=$(ps --format '{{.Names}}' | grep "wp-")
+echo $containerlist > /var/plexguide/tmp.containerlist
+
+num=0
+while read p; do
+  echo -n $p >> /tmp.format.containerlist
+  echo -n " " >> /tmp.format.containerlist
+  num=$[num+1]
+  if [ "$num" == 7 ]; then
+    num=0
+    echo " " >> /tmp.format.containerlist
+  fi
+done </var/plexguide/tmp.containerlist
+
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PG Press                            📓 Reference: pgpress.plexguide.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📂 WP Containers Detected Running
+
+$containerlist
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
+read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
+}
