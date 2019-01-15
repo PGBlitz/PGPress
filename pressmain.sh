@@ -97,7 +97,7 @@ ansible-playbook /opt/pgpress/wordpress.yml
 
 viewcontainers () {
 
-docker ps --format -a '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
 num=0
 while read p; do
