@@ -5,7 +5,6 @@
 # URL:        https://plexguide.com - http://github.plexguide.com
 # GNU:        General Public License v3.0
 ################################################################################
-mainbanner
 
 # FUNCTIONS BELOW ##############################################################
 mainbanner () {
@@ -35,7 +34,7 @@ case $typed in
         deploywp
         mainbanner ;;
     2 )
-        viewcontainers 
+        viewcontainers
         mainbanner ;;
     z )
         exit ;;
@@ -129,3 +128,5 @@ EOF
 
 read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
 }
+
+mainbanner
