@@ -12,6 +12,9 @@ tee <<-EOF
 🚀 PG Press                            📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+NOTE: Use only for testing. A Final PG update will be set to exempt
+WordPress Containers from the other Containers.
+
 [1] Instance: Deploy a New Instance    [NOT READY]
 [2] Instance: View Deployed Containers [NOT READY]
 [3] Instance: Backup & Restore         [NOT READY]
@@ -78,7 +81,7 @@ not in use!
 
 EOF
 
-echo "$subdomain" > /tmp/wp_port
+echo "$subdomain" > /tmp/wp_id
 echo "$port" > /tmp/wp_port
 
 ansible-playbook /opt/pgpress/db.yml
