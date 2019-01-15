@@ -18,7 +18,7 @@ NOTE: Use only for testing. A Final PG update will be set to exempt
 WordPress Containers from the other Containers.
 
 [1] Instance: Deploy a New Instance
-[2] Instance: View Deployed Containers [NOT READY]
+[2] Instance: View Deployed Containers
 [3] Instance: Backup & Restore         [NOT READY]
 [4] Instance: Set an Instance as TLD   [NOT READY]
 [5] Instance: Destroy an Instance      [NOT READY]
@@ -102,6 +102,7 @@ docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 file="/var/plexguide/tmp.format.containerlist"
 if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
 touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
 
 num=0
 while read p; do
