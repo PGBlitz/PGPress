@@ -190,11 +190,11 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-docker stop 'wp-$typed' 1>/dev/null 2>&1
-docker stop 'wp-$typed/mysql' 1>/dev/null 2>&1
-docker rm 'wp-$typed' 1>/dev/null 2>&1
-docker rm 'wp-$typed/mysql' 1>/dev/null 2>&1
-rm -rf '/opt/appdata/wordpress/$typed' 1>/dev/null 2>&1
+docker stop "wp-${typed}" 1>/dev/null 2>&1
+docker stop "wp-${typed}/mysql" 1>/dev/null 2>&1
+docker rm "wp-${typed}" 1>/dev/null 2>&1
+docker rm "wp-${typed}/mysql" 1>/dev/null 2>&1
+rm -rf "/opt/appdata/wordpress/${typed}" 1>/dev/null 2>&1
 
 echo
 read -p '💬 WordPress Instance $typed Removed! | Press [ENTER] ' abc < /dev/tty
