@@ -148,7 +148,7 @@ cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.for
 num=0
 while read p; do
 
-  p="${p:3}"
+  #p="${p:3}"
   echo -n $p >> /var/plexguide/tmp.format.containerlist
   echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
