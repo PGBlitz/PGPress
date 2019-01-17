@@ -21,7 +21,7 @@
         image: mariadb
 
     # FACTS #######################################################################
-    - name: Deploy Wordpress Database
+    - name: "Deploy wpdb-{{wp_id.stdout}} Database"
       docker_container:
         name: '{{pgrole}}'
         image: '{{image}}'
