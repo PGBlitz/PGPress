@@ -21,13 +21,13 @@ WordPress Containers from the other Containers.
 [2] WordPress: View Deployed Sites
 [3] WordPress: Backup & Restore        [NOT READY]
 [4] WordPress: Set a Top Level Domain  [NOT READY]
-[5] WordPress: Destroy a Website       [NOT READY]
+[5] WordPress: Destroy a Website      
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-read -p 'Type a Selection | Press [ENTER]: ' typed < /dev/tty
+read -p 'Type a Selection | Press [ENTER] ' typed < /dev/tty
 
 case $typed in
     1 )
@@ -40,7 +40,7 @@ case $typed in
         tldportion
         mainbanner ;;
     5 )
-        deploycontainers
+        destroycontainers
         mainbanner ;;
     z )
         exit ;;
@@ -87,10 +87,6 @@ tee <<-EOF
 🚀 Deploying WordPress Instance: $subdomain
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-What port should the server utilize? Type a 5 digit port that is greater
-than 10000, but less than 60000. Ensure the port is not blocked and/or is
-not in use!
-
 EOF
 
 echo "$subdomain" > /tmp/wp_id
@@ -112,6 +108,7 @@ cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.for
 
 num=0
 while read p; do
+  p="${p:3}"
   echo -n $p >> /var/plexguide/tmp.format.containerlist
   echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
@@ -136,7 +133,7 @@ $containerlist
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
+read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
 }
 
 destroycontainers () {
@@ -150,6 +147,8 @@ cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.for
 
 num=0
 while read p; do
+
+  p="${p:3}"
   echo -n $p >> /var/plexguide/tmp.format.containerlist
   echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
@@ -172,9 +171,36 @@ tee <<-EOF
 $containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 Quitting? TYPE > exit
 EOF
 
-read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
+read -p '💬 Destory Which Container? | Press [ENTER]: ' typed < /dev/tty
+
+if [[ "$typed" == "exit" ]]; then mainbanner; fi
+
+destroycheck=$(echo $containerlist | grep "$typed")
+
+if [[ "$destroycheck" == "" ]]; then
+echo
+read -p '💬 WordPress Contanier Does Not Exist! | Press [ENTER] ' typed < /dev/tty
+destroycontainers; fi
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PG Press - Destroy WordPress Instance $typed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
+docker stop "wp-${typed}/mysql"
+docker stop "wp-${typed}"
+docker rm "wp-${typed}/mysql"
+docker rm "wp-${typed}"
+rm -rf "/opt/appdata/wordpress/${typed}"
+
+echo
+read -p "💬 WordPress Instance $typed Removed! | Press [ENTER] " abc < /dev/tty
+mainbanner
 }
 
 tldportion () {
