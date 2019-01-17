@@ -15,16 +15,10 @@
       include_tasks: '/opt/pgpress/pgpresscore.yml'
 
     # FACTS #######################################################################
-    - name: 'Set Known Facts'
-      set_fact:
-        pgrole: "wpdb-{{wp_id.stdout}}"
-        image: mariadb
-
-    # FACTS #######################################################################
     - name: "Deploy wpdb-{{wp_id.stdout}} Database"
       docker_container:
-        name: '{{pgrole}}'
-        image: '{{image}}'
+        pgrole: "wpdb-{{wp_id.stdout}}"
+        image: mariadb
         pull: yes
         expose: 3306
         #published_ports:
