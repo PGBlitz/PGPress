@@ -37,6 +37,6 @@
         networks:
           - name: plexguide
             aliases:
-              - "wpdb-{{wp_id.stdout}}"
+              - '{{pgrole}}'
         restart_policy: always
         state: started
