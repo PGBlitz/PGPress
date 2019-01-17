@@ -282,7 +282,7 @@ if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then ansible-playbook /opt/ple
 
 # Repair this to Recall Port for It
 echo "$new" > /tmp/wp_id
-echo "$port" > /tmp/wp_port
+#echo "$port" > /tmp/wp_port
 
 ansible-playbook /opt/pgpress/wordpress.yml
 
