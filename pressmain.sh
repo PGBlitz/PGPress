@@ -239,69 +239,55 @@ $containerlist
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
-
-if [ "$typed" == "exit" ]; then exit; fi
-
-tcheck=$(echo $running | grep "\<$typed\>")
-if [ "$tcheck" == "" ]; then
-  tee <<-EOF
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⛔️ WARNING! - Type an Application Name! Case Senstive! Restarting!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-sleep 2
-bash /opt/plexguide/menu/traefik/tld.sh
-exit
-fi
-
-if [ "$typed" == "" ]; then
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⛔️ WARNING! - The TLD Application Name Cannot Be Blank!
+🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-sleep 2
-bash /opt/plexguide/menu/traefik/tld.sh
-exit
-else
-tee <<-EOF
+
+📂 WP Containers Detected Running
+
+$containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅️  PASS: TLD Application Set
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 Quitting? TYPE > exit
 EOF
 
-# Prevents From Repeating
+read -p '💬 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed < /dev/tty
+
+if [[ "$typed" == "exit" ]]; then mainbanner; fi
+
+destroycheck=$(echo $containerlist | grep "$typed")
+
+if [[ "$destroycheck" == "" ]]; then
+echo
+read -p '💬 WordPress Contanier Does Not Exist! | Press [ENTER] ' typed < /dev/tty
+destroycontainers; fi
+
+echo
+echo "✅️  PASS: TLD Application Set"
+sleep 1.5
+
+# Sets Old Top Level Domain
 cat /var/plexguide/tld.program > /var/plexguide/old.program
 echo "$typed" > /var/plexguide/tld.program
 
-sleep 3
-fi
-
-tee <<-EOF
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🍖  NOM NOM - Rebuilding Your Old App & New App Containers!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
+sleep 1.5
 
-sleep 2
 old=$(cat /var/plexguide/old.program)
 new=$(cat /var/plexguide/tld.program)
 
 if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then ansible-playbook /opt/plexguide/containers/$old.yml; fi
 
-ansible-playbook /opt/plexguide/containers/$new.yml
-tee <<-EOF
+# Repair this to Recall Port for It
+echo "$new" > /tmp/wp_id
+echo "$port" > /tmp/wp_port
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅️ TLD Containers are Rebuilt!  Process Complete!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-sleep 2
+ansible-playbook /opt/pgpress/wordpress.yml
+
+echo
+read -p '✅️  TLD Containers are Rebuilt - Press [ENTER] ' typed < /dev/tty
 
 # Goes Back to Main Banner AutoMatically
 }
