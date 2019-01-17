@@ -37,7 +37,7 @@ case $typed in
         viewcontainers
         mainbanner ;;
     5 )
-        deploycontainers
+        destroycontainers
         mainbanner ;;
     z )
         exit ;;
