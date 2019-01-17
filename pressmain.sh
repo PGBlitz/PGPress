@@ -262,7 +262,7 @@ destroycheck=$(echo $containerlist | grep "$typed")
 if [[ "$destroycheck" == "" ]]; then
 echo
 read -p '💬 WordPress Contanier Does Not Exist! | Press [ENTER] ' typed < /dev/tty
-destroycontainers; fi
+tldportion; fi
 
 echo
 echo "✅️  PASS: TLD Application Set"
