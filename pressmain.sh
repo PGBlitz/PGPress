@@ -190,10 +190,10 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-docker stop "wp-${typed}"
-docker stop "wp-${typed}/mysql"
-docker rm "wp-${typed}"
-docker rm "wp-${typed}/mysql"
+docker stop "${typed}"
+docker stop "${typed}/mysql"
+docker rm "${typed}"
+docker rm "${typed}/mysql"
 rm -rf "/opt/appdata/wordpress/${typed}"
 
 echo
