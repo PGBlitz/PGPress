@@ -17,7 +17,7 @@
     # FACTS #######################################################################
     - name: "Deploy wpdb-{{wp_id.stdout}} Database"
       docker_container:
-        pgrole: "wpdb-{{wp_id.stdout}}"
+        name: "wpdb-{{wp_id.stdout}}"
         image: mariadb
         pull: yes
         expose: 3306
@@ -31,6 +31,6 @@
         networks:
           - name: plexguide
             aliases:
-              - '{{pgrole}}'
+              - "wpdb-{{wp_id.stdout}}"
         restart_policy: always
         state: started
