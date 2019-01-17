@@ -21,7 +21,7 @@ WordPress Containers from the other Containers.
 [2] WordPress: View Deployed Sites
 [3] WordPress: Backup & Restore        [NOT READY]
 [4] WordPress: Set a Top Level Domain  [NOT READY]
-[5] WordPress: Destroy a Website       [NOT READY]
+[5] WordPress: Destroy a Website      
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -196,7 +196,7 @@ docker rm "wp-${typed}"
 rm -rf "/opt/appdata/wordpress/${typed}"
 
 echo
-read -p '💬 WordPress Instance $typed Removed! | Press [ENTER] ' abc < /dev/tty
+read -p "💬 WordPress Instance $typed Removed! | Press [ENTER] " abc < /dev/tty
 mainbanner
 }
 
