@@ -147,6 +147,10 @@ cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.for
 
 num=0
 while read p; do
+
+  p=$(echo "wp-corn")
+  p="${p:3}"
+
   echo -n $p >> /var/plexguide/tmp.format.containerlist
   echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
@@ -190,10 +194,10 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-docker stop "${typed}"
-docker stop "${typed}/mysql"
-docker rm "${typed}"
-docker rm "${typed}/mysql"
+docker stop "wp-${typed}"
+docker stop "wpdb-${typed}/mysql"
+docker rm "wpdb-${typed}"
+docker rm "wpdb-${typed}/mysql"
 rm -rf "/opt/appdata/wordpress/${typed}"
 
 echo
