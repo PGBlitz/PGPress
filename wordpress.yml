@@ -34,7 +34,8 @@
           traefik.backend: "{{wp_id.stdout}}"
           traefik.port: '10000'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
-
+          traefik.docker.network: 'plexguide'
+          
     - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
