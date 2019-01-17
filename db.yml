@@ -9,16 +9,22 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-    
+
     # WP CORE (MANDATORY) #########################################################
     - name: 'Including cron job'
       include_tasks: '/opt/pgpress/pgpresscore.yml'
 
     # FACTS #######################################################################
+    - name: 'Set Known Facts'
+      set_fact:
+        pgrole: "wpdb-{{wp_id.stdout}}"
+        image: mariadb
+
+    # FACTS #######################################################################
     - name: Deploy Wordpress Database
       docker_container:
-        name: "wpdb-{{wp_id.stdout}}"
-        image: mariadb
+        name: '{{pgrole}}'
+        image: '{{image}}'
         pull: yes
         expose: 3306
         #published_ports:
