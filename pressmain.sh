@@ -84,10 +84,6 @@ tee <<-EOF
 🚀 Deploying WordPress Instance: $subdomain
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-What port should the server utilize? Type a 5 digit port that is greater
-than 10000, but less than 60000. Ensure the port is not blocked and/or is
-not in use!
-
 EOF
 
 echo "$subdomain" > /tmp/wp_id
@@ -109,6 +105,7 @@ cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.for
 
 num=0
 while read p; do
+  p="${p:3}"
   echo -n $p >> /var/plexguide/tmp.format.containerlist
   echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
@@ -193,9 +190,9 @@ tee <<-EOF
 EOF
 
 docker stop "wp-${typed}"
-docker stop "wpdb-${typed}/mysql"
-docker rm "wpdb-${typed}"
-docker rm "wpdb-${typed}/mysql"
+docker stop "wp-${typed}/mysql"
+docker rm "wp-${typed}"
+docker rm "wp-${typed}/mysql"
 rm -rf "/opt/appdata/wordpress/${typed}"
 
 echo
