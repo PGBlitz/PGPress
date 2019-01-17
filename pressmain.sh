@@ -9,7 +9,7 @@
 # FUNCTIONS BELOW ##############################################################
 mainbanner () {
 tee <<-EOF
- 
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 PG Press                            📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -169,9 +169,36 @@ tee <<-EOF
 $containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 Quitting? TYPE > exit
 EOF
 
-read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
+read -p '💬 Destory Which Container? | Press [ENTER]: ' typed < /dev/tty
+
+if [[ "$typed" == "exit" ]]; then mainbanner; fi
+
+destroycheck=$(echo $containerlist | grep "$typed")
+
+if [[ "$destroycheck" == "" ]]; then
+echo
+read -p '💬 WordPress Contanier Does Not Exist! | Press [ENTER] ' typed < /dev/tty
+destroycontainers; fi
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 PG Press - Destroy WordPress Instance $typed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
+docker stop 'wp-$typed' 1>/dev/null 2>&1
+docker stop 'wp-$typed/mysql' 1>/dev/null 2>&1
+docker rm 'wp-$typed' 1>/dev/null 2>&1
+docker rm 'wp-$typed/mysql' 1>/dev/null 2>&1
+rm -rf '/opt/appdata/wordpress/$typed' 1>/dev/null 2>&1
+
+echo
+read -p '💬 WordPress Instance $typed Removed! | Press [ENTER] ' abc < /dev/tty
+mainbanner
 }
 
 mainbanner
