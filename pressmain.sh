@@ -272,7 +272,7 @@ sleep 1.5
 cat /var/plexguide/tld.program > /var/plexguide/old.program
 echo "$typed" > /var/plexguide/tld.program
 
-🍖  NOM NOM - Rebuilding Your Old App & New App Containers!
+echo "🍖  NOM NOM - Rebuilding Your Old App & New App Containers!"
 sleep 1.5
 
 old=$(cat /var/plexguide/old.program)
