@@ -10,6 +10,10 @@
   gather_facts: false
   tasks:
 
+    # WP CORE (MANDATORY) #########################################################
+    - name: 'Including PG Press Core'
+      include_tasks: '/opt/pgpress/pgpresscore.yml'
+
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
@@ -17,10 +21,6 @@
         intport: '80'
         extport: '{{wp_port.stdout}}'
         image: 'wordpress'
-
-    # WP CORE (MANDATORY) #########################################################
-    - name: 'Including PG Press Core'
-      include_tasks: '/opt/pgpress/pgpresscore.yml'
 
     # CORE (MANDATORY) ############################################################
     - name: 'Including cron job'

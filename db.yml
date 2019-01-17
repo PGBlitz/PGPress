@@ -10,15 +10,15 @@
   gather_facts: false
   tasks:
 
+    # WP CORE (MANDATORY) #########################################################
+    - name: 'Including PG Press Core'
+      include_tasks: '/opt/pgpress/pgpresscore.yml'
+
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
         pgrole: "wpdb-{{wp_id.stdout}}"
         image: mariadb
-
-    # WP CORE (MANDATORY) #########################################################
-    - name: 'Including cron job'
-      include_tasks: '/opt/pgpress/pgpresscore.yml'
 
     # FACTS #######################################################################
     - name: Deploy Wordpress Database
