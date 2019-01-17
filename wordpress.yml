@@ -32,7 +32,7 @@
         pg_labels:
           traefik.enable: 'true'
           traefik.backend: "{{wp_id.stdout}}"
-          traefik.port: '10000'
+          traefik.port: '443'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
           traefik.docker.network: 'plexguide'
 
@@ -57,8 +57,6 @@
         pull: yes
         links:
           - "wpdb-{{wp_id.stdout}}:mysql"
-        expose:
-          - "10000"
         #published_ports:
           # - "9{{wp_port.stdout}}:80"
         #  - '{{extport}}:{{intport}}'
