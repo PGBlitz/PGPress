@@ -21,7 +21,7 @@ WordPress Containers from the other Containers.
 [2] WordPress: View Deployed Sites
 [3] WordPress: Backup & Restore        [NOT READY]
 [4] WordPress: Set a Top Level Domain  [NOT READY]
-[5] WordPress: Destroy a Website      
+[5] WordPress: Destroy a Website
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -188,7 +188,7 @@ destroycontainers; fi
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press - Destroy WordPress Instance $typed
+🚀 PG Press - Destroying the WordPress Instance - $typed
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
@@ -204,55 +204,42 @@ mainbanner
 }
 
 tldportion () {
-## To Get List for Rebuilding or TLD
-docker ps --format '{{.Names}}' > /tmp/backup.list
-sed -i -e "/traefik/d" /tmp/backup.list
-sed -i -e "/watchtower/d" /tmp/backup.list
-sed -i -e "/word*/d" /tmp/backup.list
-sed -i -e "/x2go*/d" /tmp/backup.list
-sed -i -e "/plexguide/d" /tmp/backup.list
-sed -i -e "/cloudplow/d" /tmp/backup.list
-sed -i -e "/phlex/d" /tmp/backup.list
 
-rm -rf /tmp/backup.build 1>/dev/null 2>&1
-#### Commenting Out To Let User See
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
+
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
+
+num=0
 while read p; do
-  echo -n "$p" >> /tmp/backup.build
-  echo -n " " >> /tmp/backup.build
-done </tmp/backup.list
-running=$(cat /tmp/backup.list)
+  p="${p:3}"
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
+  num=$[num+1]
+  if [ "$num" == 7 ]; then
+    num=0
+    echo " " >> /var/plexguide/tmp.format.containerlist
+  fi
+done </var/plexguide/tmp.containerlist
 
-# If Blank, Exit
-if [ "$running" == "" ]; then
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
+
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⛔️ WARNING! - No Apps are Running! Exiting!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-sleep 3
-exit
-fi
-
-# Menu Interface
-tee <<-EOF
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 Traefik - Provider Interface
+🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-EOF
-echo PROGRAMS:
-echo $running
-tee <<-EOF
+📂 WP Containers Detected Running
 
-⚠️  NOTE: App Must Be Actively Running! To quit, type >>> exit
+$containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-# Standby
-read -p 'Type an Application Name | Press [ENTER]: ' typed < /dev/tty
+read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
 
 if [ "$typed" == "exit" ]; then exit; fi
 
@@ -316,8 +303,7 @@ tee <<-EOF
 EOF
 sleep 2
 
-### Go Back to Main
-mainbanner
+# Goes Back to Main Banner AutoMatically
 }
 
 mainbanner
