@@ -27,7 +27,7 @@ WordPress Containers from the other Containers.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-read -p 'Type a Selection | Press [ENTER]: ' typed < /dev/tty
+read -p 'Type a Selection | Press [ENTER] ' typed < /dev/tty
 
 case $typed in
     1 )
