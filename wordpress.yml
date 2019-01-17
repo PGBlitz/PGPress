@@ -35,7 +35,7 @@
           traefik.port: '10000'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
           traefik.docker.network: 'plexguide'
-          
+
     - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
@@ -57,7 +57,8 @@
         pull: yes
         links:
           - "wpdb-{{wp_id.stdout}}:mysql"
-        expose: 10000
+        expose:
+          - "10000"
         #published_ports:
           # - "9{{wp_port.stdout}}:80"
         #  - '{{extport}}:{{intport}}'
