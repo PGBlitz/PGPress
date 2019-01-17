@@ -19,7 +19,7 @@
       set_fact:
         pgrole: 'wp-{{wp_id.stdout}}'
         intport: '80'
-        extport: '{{wp_port.stdout}}'
+        extport: '10000'
         image: 'wordpress'
 
     # CORE (MANDATORY) ############################################################
@@ -31,7 +31,8 @@
       set_fact:
         pg_labels:
           traefik.enable: 'true'
-          traefik.port: '{{intport}}'
+          traefik.backend: "{{wp_id.stdout}}"
+          traefik.port: '10000'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
 
     - name: 'Setting PG Volumes'
@@ -55,9 +56,10 @@
         pull: yes
         links:
           - "wpdb-{{wp_id.stdout}}:mysql"
-        published_ports:
+        expose: 10000
+        #published_ports:
           # - "9{{wp_port.stdout}}:80"
-          - '{{extport}}:{{intport}}'
+        #  - '{{extport}}:{{intport}}'
         volumes: '{{pg_volumes}}'
         env: '{{pg_env}}'
         restart_policy: unless-stopped
