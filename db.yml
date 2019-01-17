@@ -9,6 +9,7 @@
 - hosts: localhost
   gather_facts: false
   tasks:
+    
     # WP CORE (MANDATORY) #########################################################
     - name: 'Including cron job'
       include_tasks: '/opt/pgpress/pgpresscore.yml'

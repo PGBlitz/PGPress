@@ -16,7 +16,7 @@
     # FACTS #######################################################################
     - name: 'Set Known Facts'
       set_fact:
-        pgrole: 'wpdb-{{wp_id.stdout}}'
+        pgrole: 'wp-{{wp_id.stdout}}'
         intport: '80'
         extport: '{{wp_port.stdout}}'
         image: 'wordpress'
