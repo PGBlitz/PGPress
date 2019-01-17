@@ -16,7 +16,7 @@
 
     - name: 'Set Known Facts'
       set_fact:
-        pgrole: 'wp-{{wp_id.stdout}}'
+        pgrole: '{{wp_id.stdout}}'
 
     # FACTS #######################################################################
     - name: "Deploy wpdb-{{wp_id.stdout}} Database"
