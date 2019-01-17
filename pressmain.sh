@@ -130,7 +130,7 @@ $containerlist
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-read -p '💬 Done Viewing? | Press [ENTER]: ' typed < /dev/tty
+read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
 }
 
 destroycontainers () {
