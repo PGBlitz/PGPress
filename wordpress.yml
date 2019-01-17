@@ -32,7 +32,7 @@
         pg_labels:
           traefik.enable: 'true'
           traefik.backend: "{{wp_id.stdout}}"
-          traefik.port: '443'
+          traefik.port: '80'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
           traefik.docker.network: 'plexguide'
 
