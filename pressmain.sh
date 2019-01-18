@@ -295,8 +295,15 @@ echo "$new" > /tmp/wp_id
 
 ansible-playbook /opt/pgpress/wordpress.yml
 
-echo
-read -p '✅️  TLD Containers are Rebuilt - Press [ENTER] ' typed < /dev/tty
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅️  Top Level Domain Container is Rebuilt!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EOF
+
+read -p 'Press [ENTER] ' typed < /dev/tty
 
 # Goes Back to Main Banner AutoMatically
 }
