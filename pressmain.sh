@@ -36,8 +36,11 @@ case $typed in
     2 )
         viewcontainers
         mainbanner ;;
-    4 )
+    3 )
         bash /opt/pgpress/pgvault/pgvault.sh
+        mainbanner ;;
+    4 )
+        tldportion
         mainbanner ;;
     5 )
         destroycontainers
