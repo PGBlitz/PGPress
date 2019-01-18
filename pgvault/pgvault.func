@@ -91,11 +91,7 @@ mathprime () {
 
 ################################################ FOR BACKUP - START
 apprecall () {
-  tree -d -L 1 /opt/appdata | awk '{print $2}' | tail -n +2 | head -n -2 > /var/plexguide/pgvault.apprecall
-  while read p; do
-    sed -i "/^$p\b/Id" /var/plexguide/pgvault.apprecall
-  done </opt/plexguide/menu/pgvault/exempt.list
-
+  tree -d -L 1 /opt/appdata/wordpress | awk '{print $2}' | tail -n +2 | head -n -2 > /var/plexguide/pgvault.apprecall
   ### Blank Out Temp List
   rm -rf /var/plexguide/program.temp && touch /var/plexguide/program.temp
   mathprime
@@ -220,7 +216,7 @@ rclone --config /opt/appdata/plexguide/rclone.conf mkdir gdrive:/plexguide/backu
 rclone --config /opt/appdata/plexguide/rclone.conf \
 --stats-one-line --stats 1s --progress \
 moveto ${tarlocation}/${program_var}.tar \
-gdrive:/plexguide/backup/${server_id}/${program_var}.tar \
+gdrive:/plexguide/backup/wordpress/${program_var}.tar \
 -v --checksum --drive-chunk-size=64M --transfers=8
 
 ##### Remove File Incase
@@ -275,7 +271,7 @@ EOF
 
 rclone --config /opt/appdata/plexguide/rclone.conf --stats-one-line \
 --stats 1s --progress \
-copy gdrive:/plexguide/backup/${srecall}/${program_var}.tar \
+copy gdrive:/plexguide/backup/wordpress/${program_var}.tar \
 ${tarlocation} \
 -v --checksum --drive-chunk-size=64M --transfers=8
 
@@ -299,13 +295,13 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-mkdir -p "/opt/appdata/${program_var}"
-rm -rf "/opt/appdata/${program_var}/*"
-chown -R 1000:1000 "/opt/appdata/${program_var}"
-chmod -R 775 "/opt/appdata/${program_var}"
-tar -C /opt/appdata/${program_var} -xvf ${tarlocation}/${program_var}.tar
-chown -R 1000:1000 "/opt/appdata/${program_var}"
-chmod -R 775 "/opt/appdata/${program_var}"
+mkdir -p "/opt/appdata/wordpress/${program_var}"
+rm -rf "/opt/appdata/wordpress/${program_var}/*"
+chown -R 1000:1000 "/opt/appdata/wordpress/${program_var}"
+chmod -R 775 "/opt/appdata/wordpress/${program_var}"
+tar -C /opt/appdata/wordpress/${program_var} -xvf ${tarlocation}/${program_var}.tar
+chown -R 1000:1000 "/opt/appdata/wordpress/${program_var}"
+chmod -R 775 "/opt/appdata/wordpress/${program_var}"
 
 ##### Restart Docker Application if was Running Prior
 if [ "$running" == "1" ]; then
