@@ -262,15 +262,26 @@ echo
 read -p '💬 WordPress Contanier Does Not Exist! | Press [ENTER] ' typed < /dev/tty
 tldportion; fi
 
-echo
-echo "✅️  PASS: TLD Application Set"
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅️  PASS: TLD Application Set
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
 sleep 1.5
 
 # Sets Old Top Level Domain
 cat /var/plexguide/tld.program > /var/plexguide/old.program
 echo "$typed" > /var/plexguide/tld.program
 
-echo "🍖  NOM NOM - Rebuilding Your Old App & New App Containers!"
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🍖  NOM NOM - Rebuilding Your Old App & New App Containers!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+
 sleep 1.5
 
 old=$(cat /var/plexguide/old.program)
