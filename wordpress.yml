@@ -27,6 +27,10 @@
       shell: 'cat /var/plexguide/tld.program'
       register: toplevel
 
+    - name: Register Domain
+      shell: 'cat /var/plexguide/server.domain'
+      register: domain
+
     - name: 'If Fact Matches - Enable TLD'
       set_fact:
         tldset: '{{domain.stdout}}'
