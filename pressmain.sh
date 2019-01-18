@@ -294,9 +294,9 @@ tldtype=$(cat /var/plexguide/tld.type)
 if [[ "$tldtype" != "wordpress" ]]; then
   ansible-playbook /opt/plexguide/containers/$old.yml
 else
-
+  echo "$tldtype" > /tmp/wp_id
   ansible-playbook /opt/pgpress/wordpress.yml
-
+  echo "$typed" > /tmp/wp_id
 fi
 
 # Repair this to Recall Port for It
