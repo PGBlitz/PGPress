@@ -289,12 +289,12 @@ new=$(cat /var/plexguide/tld.program)
 
 if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
 touch /var/plexguide/tld.type
-tldtype=$(cat /var/plexguide/tld.type); fi 
+tldtype=$(cat /var/plexguide/tld.type); fi
 
 if [[ "$tldtype" != "wordpress" ]]; then
   ansible-playbook /opt/plexguide/containers/$old.yml
 else
-  echo "$tldtype" > /tmp/wp_id
+  echo "$old" > /tmp/wp_id
   ansible-playbook /opt/pgpress/wordpress.yml
   echo "$typed" > /tmp/wp_id
 fi
