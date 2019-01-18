@@ -194,12 +194,7 @@ server_id=wordpress
 tar \
   --warning=no-file-changed --ignore-failed-read --absolute-names --warning=no-file-removed \
   --exclude-from=/opt/plexguide/menu/pgvault/exclude.list \
-  -C /opt/appdata/${program_var} -cvf /opt/appdata/plexguide/${program_var}.tar ./
-
-#tar \
-#--warning=no-file-changed --ignore-failed-read --absolute-names --warning=no-file-removed \
-#--exclude-from=/opt/plexguide/menu/pgvault/exclude.list \
-#-cfv ${program_var}.tar /opt/appdata/${program_var}
+  -C /opt/appdata/wordpress/${program_var} -cvf /opt/appdata/plexguide/wordpress/${program_var}.tar ./
 
 ##### Restart Docker Application if was Running Prior
 if [ "$running" == "1" ]; then

@@ -54,7 +54,7 @@
     - name: 'Setting PG Volumes'
       set_fact:
         pg_volumes:
-          - /opt/appdata/wordpress/{{wp_id.stdout}}:/var/www/html
+          - /opt/appdata/wordpress/{{wp_id.stdout}}/{{wp_id.stdout}}:/var/www/html
           - /etc/localtime:/etc/localtime:ro
 
     - name: 'Setting PG ENV'
