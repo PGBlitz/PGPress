@@ -287,16 +287,18 @@ sleep 1.5
 old=$(cat /var/plexguide/old.program)
 new=$(cat /var/plexguide/tld.program)
 
-if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
 touch /var/plexguide/tld.type
-tldtype=$(cat /var/plexguide/tld.type); fi
+tldtype=$(cat /var/plexguide/tld.type)
 
-if [[ "$tldtype" == "standard" ]]; then
-  ansible-playbook /opt/plexguide/containers/$old.yml
-elif [[ "$tldtype" == "wordpress" ]]; then
-  echo "$old" > /tmp/wp_id
-  ansible-playbook /opt/pgpress/wordpress.yml
-  echo "$typed" > /tmp/wp_id
+if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
+
+  if [[ "$tldtype" == "standard" ]]; then
+    ansible-playbook /opt/plexguide/containers/$old.yml
+  elif [[ "$tldtype" == "wordpress" ]]; then
+    echo "$old" > /tmp/wp_id
+    ansible-playbook /opt/pgpress/wordpress.yml
+    echo "$typed" > /tmp/wp_id
+  fi
 fi
 
 # Repair this to Recall Port for It
