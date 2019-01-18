@@ -36,6 +36,11 @@
         tldset: '{{domain.stdout}}'
       when: 'toplevel.stdout == wp_id.stdout'
 
+    - name: 'If Fact Does Not Match - Ignore TLD'
+      set_fact:
+        tldset: ''
+      when: 'not toplevel.stdout = wp_id.stdout'
+
     # LABELS ######################################################################
     - name: 'Adding Traefik'
       set_fact:
