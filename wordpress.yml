@@ -31,7 +31,7 @@
       set_fact:
         pg_labels:
           traefik.enable: 'true'
-          traefik.backend: "{{wp_id.stdout}}"
+          traefik.backend: "{{pgrole}}"
           traefik.port: '80'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}}'
           traefik.docker.network: 'plexguide'
