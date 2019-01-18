@@ -23,8 +23,10 @@
         image: 'wordpress'
 
     # CORE (MANDATORY) ############################################################
-    - name: 'Including cron job'
-      include_tasks: '/opt/plexguide/containers/_core.yml'
+    - name: 'If Fact Matches - Enable TLD'
+      set_fact:
+        tldset: '{{domain.stdout}}'
+      when: 'toplevel.stdout == wp_id.stdout'
 
     # LABELS ######################################################################
     - name: 'Adding Traefik'
