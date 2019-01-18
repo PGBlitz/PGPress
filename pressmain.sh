@@ -81,6 +81,18 @@ echo "$port" > /tmp/wp_port
 ansible-playbook /opt/pgpress/db.yml
 ansible-playbook /opt/pgpress/wordpress.yml
 
+wpdomain=$(cat /var/plexguide/server.domain)
+
+tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 Site Deployed! Visit - $subdomain.$wpdomain
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EOF
+
+read -p '💬 Done? | Press [ENTER] ' typed < /dev/tty
+
 }
 
 viewcontainers () {
