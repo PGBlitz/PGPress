@@ -9,7 +9,3 @@
 - name: WordPress ID
   shell: "cat /tmp/wp_id"
   register: wp_id
-
-- name: WordPress Port
-  shell: "cat /tmp/wp_port"
-  register: wp_port

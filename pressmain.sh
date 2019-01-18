@@ -287,13 +287,26 @@ sleep 1.5
 old=$(cat /var/plexguide/old.program)
 new=$(cat /var/plexguide/tld.program)
 
-if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then ansible-playbook /opt/plexguide/containers/$old.yml; fi
+if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
+touch /var/plexguide/tld.type
+tldtype=$(cat /var/plexguide/tld.type)
+
+if [[ "$tldtype" != "wordpress" ]]; then
+  ansible-playbook /opt/plexguide/containers/$old.yml
+else
+
+  ansible-playbook /opt/pgpress/wordpress.yml
+
+fi
 
 # Repair this to Recall Port for It
 echo "$new" > /tmp/wp_id
 #echo "$port" > /tmp/wp_port
 
 ansible-playbook /opt/pgpress/wordpress.yml
+
+# Notifies that TLD is WordPress
+echo "wordpress" > /var/plexguide/tld.type
 
 tee <<-EOF
 
