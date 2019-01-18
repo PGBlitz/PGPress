@@ -20,7 +20,7 @@ WordPress Containers from the other Containers.
 [1] WordPress: Deploy a New Site
 [2] WordPress: View Deployed Sites
 [3] WordPress: Backup & Restore        [NOT READY]
-[4] WordPress: Set a Top Level Domain  [NOT READY]
+[4] WordPress: Set a Top Level Domain
 [5] WordPress: Destroy a Website
 [Z] Exit
 
