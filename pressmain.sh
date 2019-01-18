@@ -37,7 +37,7 @@ case $typed in
         viewcontainers
         mainbanner ;;
     4 )
-        tldportion
+        bash /opt/pgpress/pgvault/pgvault.sh
         mainbanner ;;
     5 )
         destroycontainers
