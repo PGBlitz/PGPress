@@ -6,7 +6,7 @@
 # GNU:        General Public License v3.0
 ################################################################################
 source /opt/plexguide/menu/functions/functions.sh
-source ./pgvault.func
+source /opt/pgpress/pgvault/pgvault.func
 
 file="/var/plexguide/restore.id"
 if [ ! -e "$file" ]; then
