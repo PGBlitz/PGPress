@@ -57,9 +57,6 @@
         pull: yes
         links:
           - "wpdb-{{wp_id.stdout}}:mysql"
-        #published_ports:
-          # - "9{{wp_port.stdout}}:80"
-        #  - '{{extport}}:{{intport}}'
         volumes: '{{pg_volumes}}'
         env: '{{pg_env}}'
         restart_policy: unless-stopped
