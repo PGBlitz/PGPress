@@ -66,9 +66,13 @@ Type the name for the subdomain wordpress instance. Instance can later be
 turned to operate at the TLD (Top Level Domain). Keep it all lowercase and
 with no breaks in space.
 
-EOF
+💬 Quitting? TYPE > exit
 
+EOF
 read -p '↘️  Type Subdomain | Press [ENTER]: ' subdomain < /dev/tty
+
+if [ "$subdomain" == "exit" ]; then mainbanner; fi
+if [ "$subdomain" == "" ]; then deploywp; fi
 
 tee <<-EOF
 
