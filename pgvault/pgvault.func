@@ -328,7 +328,7 @@ tee <<-EOF
 EOF
 
 sleep 5
-docker restart $program_var/mysql
+docker restart wp-$program_var/mysql
 
 wpdomain=$(cat /var/plexguide/server.domain)
 
