@@ -399,6 +399,32 @@ if [ "$current1" == "" ]; then badinput && vaultrestore; fi
 
 buildup2
 }
+
+serverprime () {
+  echo wordpress > /tmp/server.select
+
+  current2=$(cat /tmp/server.list | grep "\<$server\>")
+  if [ "$current2" == "" ]; then
+  badserver
+  serverprime; fi
+
+  tempserver=$server
+  ls -l  /mnt/gdrive/plexguide/backup/$tempserver | awk '{print $9}' | tail -n +2 > /var/plexguide/pgvault.restoreapps
+
+  ### Blank Out Temp List
+  rm -rf /var/plexguide/pgvault.apprecall 1>/dev/null 2>&1
+  touch /var/plexguide/pgvault.apprecall
+
+  while read p; do
+    basename "$p" .tar >> /var/plexguide/pgvault.apprecall
+  done </var/plexguide/pgvault.restoreapps
+
+  ### Blank Out Temp List
+  rm -rf /var/plexguide/program.temp 1>/dev/null 2>&1
+  touch /var/plexguide/program.temp
+  mathprime
+}
+
 ##################################################### START Primary Interface
 primaryinterface () {
   initial2
@@ -420,6 +446,7 @@ EOF
     vaultbackup
     primaryinterface
   elif [ "$typed" == "2" ]; then
+    serverprime
     vaultrestore
     primaryinterface
   elif [[ "$typed" == "Z" || "$typed" == "z" ]]; then
