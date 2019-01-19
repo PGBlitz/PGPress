@@ -202,6 +202,7 @@ EOF
 sleep 2
 docker restart $program_var/mysql 1>/dev/null 2>&1
 docker restart $program_var 1>/dev/null 2>&1; fi
+docker restart $program_var/mysql 1>/dev/null 2>&1
 
 ###### Backing Up Files to GDrive
 tee <<-EOF
@@ -315,6 +316,7 @@ EOF
 sleep 2
 docker restart $program_var/mysql 1>/dev/null 2>&1
 docker restart $program_var 1>/dev/null 2>&1; fi
+docker restart $program_var/mysql 1>/dev/null 2>&1
 
 ##### Remove File Incase
 rm -rf ${tarlocation}/${program_var}.tar 1>/dev/null 2>&1
