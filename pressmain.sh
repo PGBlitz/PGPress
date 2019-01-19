@@ -253,9 +253,8 @@ tee <<-EOF
 
 $containerlist
 
-💬 Quitting? TYPE > exit
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+💬 Quitting? TYPE > exit
 EOF
 
 read -p '💪 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed < /dev/tty
