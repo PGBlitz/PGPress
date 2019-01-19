@@ -340,8 +340,6 @@ tee <<-EOF
 
 EOF
 
-read -p '💬 Done? | Press [ENTER] ' typed < /dev/tty
-
 ##### Remove File Incase
 rm -rf ${tarlocation}/${program_var}.tar 1>/dev/null 2>&1
 }
