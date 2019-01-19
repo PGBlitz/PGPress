@@ -15,6 +15,12 @@ a7=$(cat /var/plexguide/auth.bypass)
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
 
+file=$(cat /mnt/gdrive/plexguide/backup/wordpress)
+if [[ "$a7" != "good" ]]; then domaincheck7; fi
+echo good > /var/plexguide/auth.bypass
+
+
+
 tld=$(cat /var/plexguide/tld.program)
 tee <<-EOF
 
