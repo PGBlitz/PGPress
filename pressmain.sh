@@ -21,10 +21,11 @@ if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
 
   # Makes a Test Directory for Checks
   rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
+  rclonecheck=$(rclone lsd --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
   sleep 1
 
     # Conducts a Check Again; if fails; then exits
-    if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
+    if [ "$rclonecheck" == "" ]; then
       echo
       echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
       echo ""
