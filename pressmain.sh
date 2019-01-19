@@ -15,10 +15,29 @@ a7=$(cat /var/plexguide/auth.bypass)
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
 
-file=$(cat /mnt/gdrive/plexguide/backup/wordpress)
+# Checks to That RClone Works
+file=$(/mnt/gdrive/plexguide/backup/wordpress)
+if [ ! -e "$file" ]; then
+
+  # Makes a Test Directory for Checks
+  rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
+  sleep 1
+
+    # Conducts a Check Again; if fails; then exits
+    file=$(/mnt/gdrive/plexguide/backup/wordpress)
+    if [ ! -e "$file" ]; then
+      echo
+      echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
+      echo ""
+      echo "1. Did You Deploy PGClone?"
+      echo "2. Test by typing ~ ls -la /mnt/gdrive"
+      echo ""
+      read -p 'Confirm Info | Press [ENTER] ' typed < /dev/tty
+      exit; fi
+fi
+
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
-
 
 
 tld=$(cat /var/plexguide/tld.program)
