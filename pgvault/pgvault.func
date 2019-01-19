@@ -255,7 +255,7 @@ tee <<-EOF
 ↘️  Determining Initial File Size - $program_var
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
-size=$(du -sh --apparent-size /mnt/gdrive/plexguide/backup/${srecall}/${program_var}.tar | /usr/bin/awk '{print $1}')
+size=$(du -sh --apparent-size /mnt/gdrive/plexguide/backup/wordpress/${program_var}.tar | /usr/bin/awk '{print $1}')
 sleep 2
 echo "Initial File Size: $size"
 sleep 2
@@ -328,7 +328,7 @@ if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Vault ~ Data Storage             📓 Reference: pgpress.plexguide.com
+🚀 PG Vault ~ Data Storage /w PG Press 📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 Potential Data to Backup
@@ -369,7 +369,7 @@ if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Vault ~ Data Recall              📓 Reference: pgpress.plexguide.com
+🚀 PG Vault ~ Data Recall /w PG Press  📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 Potential Data to Restore
