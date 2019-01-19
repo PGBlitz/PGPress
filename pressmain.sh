@@ -79,7 +79,6 @@ tee <<-EOF
 EOF
 
 echo "$subdomain" > /tmp/wp_id
-echo "$port" > /tmp/wp_port
 
 ansible-playbook /opt/pgpress/db.yml
 ansible-playbook /opt/pgpress/wordpress.yml
