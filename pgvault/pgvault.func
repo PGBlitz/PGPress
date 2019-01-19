@@ -170,8 +170,8 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 sleep 1
-docker stop $program_var 1>/dev/null 2>&1
 docker stop $program_var/mysql 1>/dev/null 2>&1
+docker stop $program_var 1>/dev/null 2>&1
 
 fi
 
@@ -200,8 +200,8 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 sleep 2
-docker restart $program_var 1>/dev/null 2>&1; fi
 docker restart $program_var/mysql 1>/dev/null 2>&1
+docker restart $program_var 1>/dev/null 2>&1; fi
 
 ###### Backing Up Files to GDrive
 tee <<-EOF
@@ -285,8 +285,8 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 sleep 1
-docker stop $program_var 1>/dev/null 2>&1; fi
 docker stop $program_var/mysql 1>/dev/null 2>&1
+docker stop $program_var 1>/dev/null 2>&1; fi
 
 ###### Start the Backup Process - Backup Locally First
 tee <<-EOF
@@ -313,8 +313,8 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 sleep 2
-docker restart $program_var 1>/dev/null 2>&1; fi
 docker restart $program_var/mysql 1>/dev/null 2>&1
+docker restart $program_var 1>/dev/null 2>&1; fi
 
 ##### Remove File Incase
 rm -rf ${tarlocation}/${program_var}.tar 1>/dev/null 2>&1
