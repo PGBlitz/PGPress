@@ -14,12 +14,11 @@ tee <<-EOF
 🚀 PG Press                            📓 Reference: pgpress.plexguide.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-NOTE: Use only for testing. A Final PG update will be set to exempt
-WordPress Containers from the other Containers.
+💬 PG Press is a Mass WordPress Management System managed by PlexGuide!
 
 [1] WordPress: Deploy a New Site
 [2] WordPress: View Deployed Sites
-[3] WordPress: Backup & Restore        [NOT READY]
+[3] WordPress: Backup & Restore
 [4] WordPress: Set a Top Level Domain
 [5] WordPress: Destroy a Website
 [Z] Exit
