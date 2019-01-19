@@ -66,8 +66,8 @@ Type the name for the subdomain wordpress instance. Instance can later be
 turned to operate at the TLD (Top Level Domain). Keep it all lowercase and
 with no breaks in space.
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💬 Quitting? TYPE > exit
-
 EOF
 read -p '↘️  Type Subdomain | Press [ENTER]: ' subdomain < /dev/tty
 
@@ -181,6 +181,7 @@ EOF
 read -p '💬 Destory Which Container? | Press [ENTER]: ' typed < /dev/tty
 
 if [[ "$typed" == "exit" ]]; then mainbanner; fi
+if [[ "$typed" == "" ]]; then destroycontainers; fi
 
 destroycheck=$(echo $containerlist | grep "$typed")
 
