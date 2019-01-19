@@ -8,6 +8,8 @@
 
 # FUNCTIONS BELOW ##############################################################
 mainbanner () {
+  
+tld=$(cat /var/plexguide/tld.program)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -19,7 +21,7 @@ tee <<-EOF
 [1] WordPress: Deploy a New Site
 [2] WordPress: View Deployed Sites
 [3] WordPress: Backup & Restore
-[4] WordPress: Set a Top Level Domain
+[4] WordPress: Set a Top Level Domain [$tld]
 [5] WordPress: Destroy a Website
 [Z] Exit
 
