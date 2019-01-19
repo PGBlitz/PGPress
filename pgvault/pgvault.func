@@ -420,7 +420,6 @@ EOF
     vaultbackup
     primaryinterface
   elif [ "$typed" == "2" ]; then
-    serverprime
     vaultrestore
     primaryinterface
   elif [[ "$typed" == "Z" || "$typed" == "z" ]]; then
