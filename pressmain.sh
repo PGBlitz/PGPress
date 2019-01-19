@@ -253,11 +253,12 @@ tee <<-EOF
 
 $containerlist
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💬 Quitting? TYPE > exit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 EOF
 
-read -p '💬 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed < /dev/tty
+read -p '💪 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed < /dev/tty
 
 if [[ "$typed" == "exit" ]]; then mainbanner; fi
 
