@@ -45,7 +45,7 @@ final () {
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   read -p '✅ Process Complete! | PRESS [ENTER] ' typed < /dev/tty
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  bash /opt/plexguide/menu/pgvault/pgvault.sh
+  bash /opt/pgpress/pressmain.sh
   exit
 }
 
