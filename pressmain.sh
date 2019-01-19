@@ -16,7 +16,7 @@ if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
 
 # Checks to That RClone Works
-file=$(/mnt/gdrive/plexguide/backup/wordpress)
+file=$(/mnt/gdrive/plexguide/backup/wordpress/)
 if [ ! -e "$file" ]; then
 
   # Makes a Test Directory for Checks
@@ -24,7 +24,7 @@ if [ ! -e "$file" ]; then
   sleep 1
 
     # Conducts a Check Again; if fails; then exits
-    file=$(/mnt/gdrive/plexguide/backup/wordpress)
+    file=$(/mnt/gdrive/plexguide/backup/wordpress/)
     if [ ! -e "$file" ]; then
       echo
       echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
