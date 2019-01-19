@@ -175,7 +175,7 @@ tee <<-EOF
 $containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 Quitting? TYPE > exit
+↘️ Quitting? TYPE > exit
 EOF
 
 read -p '💬 Destory Which Container? | Press [ENTER]: ' typed < /dev/tty
