@@ -17,7 +17,7 @@ echo good > /var/plexguide/auth.bypass
 
 # Checks to That RClone Works
 file=$(/mnt/gdrive/plexguide/backup/wordpress/)
-if [ ! -e "$file" ]; then
+if [ ! -d "$file" ]; then
 
   # Makes a Test Directory for Checks
   rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
@@ -25,7 +25,7 @@ if [ ! -e "$file" ]; then
 
     # Conducts a Check Again; if fails; then exits
     file=$(/mnt/gdrive/plexguide/backup/wordpress/)
-    if [ ! -e "$file" ]; then
+    if [ ! -d "$file" ]; then
       echo
       echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
       echo ""
