@@ -15,27 +15,6 @@ a7=$(cat /var/plexguide/auth.bypass)
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
 
-# Checks to That RClone Works
-file=$()
-if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
-
-  # Makes a Test Directory for Checks
-  rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
-  rclonecheck=$(rclone lsd --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
-  sleep 1
-
-    # Conducts a Check Again; if fails; then exits
-    if [ "$rclonecheck" == "" ]; then
-      echo
-      echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
-      echo ""
-      echo "1. Did You Deploy PGClone?"
-      echo "2. Test by typing ~ ls -la /mnt/gdrive"
-      echo ""
-      read -p 'Confirm Info | Press [ENTER] ' typed < /dev/tty
-      exit; fi
-fi
-
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
 echo good > /var/plexguide/auth.bypass
 
@@ -69,6 +48,28 @@ case $typed in
         viewcontainers
         mainbanner ;;
     3 )
+
+    # Checks to That RClone Works
+    file=$()
+    if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
+
+      # Makes a Test Directory for Checks
+      rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
+      rclonecheck=$(rclone lsd --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
+      sleep 1
+
+        # Conducts a Check Again; if fails; then exits
+        if [ "$rclonecheck" == "" ]; then
+          echo
+          echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
+          echo ""
+          echo "1. Did You Deploy PGClone?"
+          echo "2. Test by typing ~ ls -la /mnt/gdrive"
+          echo ""
+          read -p 'Confirm Info | Press [ENTER] ' typed < /dev/tty
+          mainbanner; fi
+    fi
+
         bash /opt/pgpress/pgvault/pgvault.sh
         mainbanner ;;
     4 )
