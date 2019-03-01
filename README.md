@@ -21,7 +21,7 @@ _**Table of Contents**_
 **PG Press:** A repo that enables users to deploy, backup, and restore wordpress servers
 
 <p align="center"><kbd><img src="https://pgblitz.com/wikipics/pglogo-move.gif" width="400""></kbd></p>
-<p align="center"><b>Manage PlexGuide - AnyTime, Anywhere!</b></p>
+<p align="center"><b>Manage PGBlitz - AnyTime, Anywhere!</b></p>
 
 **WARNING: Wiki Under Construction**
 

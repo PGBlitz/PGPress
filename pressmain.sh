@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Title:      PlexGuide (Reference Title File)
+# Title:      PGBlitz (Reference Title File)
 # Author(s):  Admin9705
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
@@ -26,7 +26,7 @@ tee <<-EOF
 🚀 PG Press                            📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💬 PG Press is a Mass WordPress Management System managed by PlexGuide!
+💬 PG Press is a Mass WordPress Management System managed by PGBlitz!
 
 [1] WordPress: Deploy a New Site
 [2] WordPress: View Deployed Sites
