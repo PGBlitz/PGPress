@@ -2,7 +2,7 @@
 #
 # Title:      PlexGuide (Reference Title File)
 # Author(s):  Admin9705
-# URL:        https://plexguide.com - http://github.plexguide.com
+# URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
 runningcheck () {
@@ -355,7 +355,7 @@ if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Vault ~ Data Storage /w PG Press 📓 Reference: pgpress.plexguide.com
+🚀 PG Vault ~ Data Storage /w PG Press 📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 Potential Data to Backup
@@ -397,7 +397,7 @@ if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Vault ~ Data Recall /w PG Press  📓 Reference: pgpress.plexguide.com
+🚀 PG Vault ~ Data Recall /w PG Press  📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 Potential Data to Restore
@@ -454,7 +454,7 @@ primaryinterface () {
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📁  PG Vault for PG Press              📓 Reference: pgpress.plexguide.com
+📁  PG Vault for PG Press              📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [1] Data Backup

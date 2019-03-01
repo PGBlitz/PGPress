@@ -2,7 +2,7 @@
 #
 # Title:      PlexGuide (Reference Title File)
 # Author(s):  Admin9705
-# URL:        https://plexguide.com - http://github.plexguide.com
+# URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
 
@@ -23,7 +23,7 @@ tld=$(cat /var/plexguide/tld.program)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press                            📓 Reference: pgpress.plexguide.com
+🚀 PG Press                            📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💬 PG Press is a Mass WordPress Management System managed by PlexGuide!
@@ -160,7 +160,7 @@ containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press                            📓 Reference: pgpress.plexguide.com
+🚀 PG Press                            📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 WP Containers Detected Running
@@ -200,7 +200,7 @@ containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press                            📓 Reference: pgpress.plexguide.com
+🚀 PG Press                            📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 WP Containers Detected Running
@@ -267,7 +267,7 @@ containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.plexguide.com
+🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 WP Containers Detected Running
@@ -280,7 +280,7 @@ EOF
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.plexguide.com
+🚀 PG Press - Set Top Level Domain     📓 Reference: pgpress.pgblitz.com
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 📂 WP Containers Detected Running
