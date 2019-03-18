@@ -24,11 +24,11 @@
 
     # CORE (MANDATORY) ############################################################
     - name: 'Register TLD'
-      shell: 'cat /var/plexguide/tld.program'
+      shell: 'cat /var/pgblitz/tld.program'
       register: toplevel
 
     - name: Register Domain
-      shell: 'cat /var/plexguide/server.domain'
+      shell: 'cat /var/pgblitz/server.domain'
       register: domain
 
     - name: 'If Fact Matches - Enable TLD'
@@ -49,7 +49,7 @@
           traefik.backend: "{{pgrole}}"
           traefik.port: '80'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}},{{tldset}}'
-          traefik.docker.network: 'plexguide'
+          traefik.docker.network: 'pgblitz'
 
     - name: 'Setting PG Volumes'
       set_fact:
@@ -76,7 +76,7 @@
         env: '{{pg_env}}'
         restart_policy: unless-stopped
         networks:
-          - name: plexguide
+          - name: pgblitz
             aliases:
               - "wp-{{wp_id.stdout}}"
         state: started
