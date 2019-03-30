@@ -5,12 +5,12 @@
 # URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
-source /opt/pgblitz/menu/functions/functions.sh
+source /opt/plexguide/menu/functions/functions.sh
 source /opt/pgpress/pgvault/pgvault.func
 
-file="/var/pgblitz/restore.id"
+file="/var/plexguide/restore.id"
 if [ ! -e "$file" ]; then
-  echo "[NOT-SET]" > /var/pgblitz/restore.id
+  echo "[NOT-SET]" > /var/plexguide/restore.id
 fi
 
 initial

@@ -33,7 +33,7 @@
         env:
           MYSQL_ROOT_PASSWORD: "mYsupERbigPas2WorD"
         networks:
-          - name: pgblitz
+          - name: plexguide
             aliases:
               - "wpdb-{{wp_id.stdout}}"
         restart_policy: always

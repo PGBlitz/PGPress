@@ -9,17 +9,17 @@
 # FUNCTIONS BELOW ##############################################################
 mainbanner () {
 
-touch /var/pgblitz/auth.bypass
+touch /var/plexguide/auth.bypass
 
-a7=$(cat /var/pgblitz/auth.bypass)
+a7=$(cat /var/plexguide/auth.bypass)
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
-echo good > /var/pgblitz/auth.bypass
+echo good > /var/plexguide/auth.bypass
 
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
-echo good > /var/pgblitz/auth.bypass
+echo good > /var/plexguide/auth.bypass
 
 
-tld=$(cat /var/pgblitz/tld.program)
+tld=$(cat /var/plexguide/tld.program)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -51,17 +51,17 @@ case $typed in
 
     # Checks to That RClone Works
     file=$()
-    if [ ! -d "/mnt/gdrive/pgblitz/backup/wordpress" ]; then
+    if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
 
       # Makes a Test Directory for Checks
-      rclone mkdir --config /opt/appdata/pgblitz/rclone.conf gdrive:/pgblitz/backup/wordpress
-      rclonecheck=$(rclone lsd --config /opt/appdata/pgblitz/rclone.conf gdrive:/pgblitz/backup/ | grep wordpress)
+      rclone mkdir --config /opt/appdata/pgblitz/rclone.conf gdrive:/plexguide/backup/wordpress
+      rclonecheck=$(rclone lsd --config /opt/appdata/pgblitz/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
       sleep 1
 
         # Conducts a Check Again; if fails; then exits
         if [ "$rclonecheck" == "" ]; then
           echo
-          echo "💬  Unable to find - /mnt/gdrive/pgblitz/backup/wordpress"
+          echo "💬  Unable to find - /mnt/gdrive/plexguide/backup/wordpress"
           echo ""
           echo "1. Did You Deploy PGClone?"
           echo "2. Test by typing ~ ls -la /mnt/gdrive"
@@ -120,7 +120,7 @@ echo "$subdomain" > /tmp/wp_id
 ansible-playbook /opt/pgpress/db.yml
 ansible-playbook /opt/pgpress/wordpress.yml
 
-wpdomain=$(cat /var/pgblitz/server.domain)
+wpdomain=$(cat /var/plexguide/server.domain)
 
 tee <<-EOF
 
@@ -136,26 +136,26 @@ read -p '💬 Done? | Press [ENTER] ' typed < /dev/tty
 
 viewcontainers () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
-file="/var/pgblitz/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
-touch /var/pgblitz/tmp.format.containerlist
-cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
 
 num=0
 while read p; do
   p="${p:3}"
-  echo -n $p >> /var/pgblitz/tmp.format.containerlist
-  echo -n " " >> /var/pgblitz/tmp.format.containerlist
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /var/pgblitz/tmp.format.containerlist
+    echo " " >> /var/plexguide/tmp.format.containerlist
   fi
-done </var/pgblitz/tmp.containerlist
+done </var/plexguide/tmp.containerlist
 
-containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -175,27 +175,27 @@ read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
 
 destroycontainers () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
-file="/var/pgblitz/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
-touch /var/pgblitz/tmp.format.containerlist
-cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
 
 num=0
 while read p; do
 
   p="${p:3}"
-  echo -n $p >> /var/pgblitz/tmp.format.containerlist
-  echo -n " " >> /var/pgblitz/tmp.format.containerlist
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /var/pgblitz/tmp.format.containerlist
+    echo " " >> /var/plexguide/tmp.format.containerlist
   fi
-done </var/pgblitz/tmp.containerlist
+done </var/plexguide/tmp.containerlist
 
-containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -243,26 +243,26 @@ mainbanner
 
 tldportion () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/plexguide/tmp.containerlist
 
-file="/var/pgblitz/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
-touch /var/pgblitz/tmp.format.containerlist
-cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
+file="/var/plexguide/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/plexguide/tmp.format.containerlist; fi
+touch /var/plexguide/tmp.format.containerlist
+cat /var/plexguide/tmp.format.containerlist | cut -c 2- > /var/plexguide/tmp.format.containerlist
 
 num=0
 while read p; do
   p="${p:3}"
-  echo -n $p >> /var/pgblitz/tmp.format.containerlist
-  echo -n " " >> /var/pgblitz/tmp.format.containerlist
+  echo -n $p >> /var/plexguide/tmp.format.containerlist
+  echo -n " " >> /var/plexguide/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /var/pgblitz/tmp.format.containerlist
+    echo " " >> /var/plexguide/tmp.format.containerlist
   fi
-done </var/pgblitz/tmp.containerlist
+done </var/plexguide/tmp.containerlist
 
-containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
+containerlist=$(cat /var/plexguide/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -312,8 +312,8 @@ EOF
 sleep 1.5
 
 # Sets Old Top Level Domain
-cat /var/pgblitz/tld.program > /var/pgblitz/old.program
-echo "$typed" > /var/pgblitz/tld.program
+cat /var/plexguide/tld.program > /var/plexguide/old.program
+echo "$typed" > /var/plexguide/tld.program
 
 tee <<-EOF
 
@@ -324,16 +324,16 @@ EOF
 
 sleep 1.5
 
-old=$(cat /var/pgblitz/old.program)
-new=$(cat /var/pgblitz/tld.program)
+old=$(cat /var/plexguide/old.program)
+new=$(cat /var/plexguide/tld.program)
 
-touch /var/pgblitz/tld.type
-tldtype=$(cat /var/pgblitz/tld.type)
+touch /var/plexguide/tld.type
+tldtype=$(cat /var/plexguide/tld.type)
 
 if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
 
   if [[ "$tldtype" == "standard" ]]; then
-    ansible-playbook /opt/pgblitz/containers/$old.yml
+    ansible-playbook /opt/plexguide/containers/$old.yml
   elif [[ "$tldtype" == "wordpress" ]]; then
     echo "$old" > /tmp/wp_id
     ansible-playbook /opt/pgpress/wordpress.yml
@@ -348,7 +348,7 @@ echo "$new" > /tmp/wp_id
 ansible-playbook /opt/pgpress/wordpress.yml
 
 # Notifies that TLD is WordPress
-echo "wordpress" > /var/pgblitz/tld.type
+echo "wordpress" > /var/plexguide/tld.type
 
 tee <<-EOF
 
@@ -364,8 +364,8 @@ read -p 'Press [ENTER] ' typed < /dev/tty
 }
 
 domaincheck7() {
-  domaincheck=$(cat /var/pgblitz/server.domain)
-  touch /var/pgblitz/server.domain
+  domaincheck=$(cat /var/plexguide/server.domain)
+  touch /var/plexguide/server.domain
   touch /tmp/portainer.check
   rm -r /tmp/portainer.check
   wget -q "https://portainer.${domaincheck}" -O /tmp/portainer.check
