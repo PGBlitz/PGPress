@@ -12,18 +12,18 @@ runningcheck () {
 }
 
 initial () {
-  rm -rf /opt/var/pgvault.output 1>/dev/null 2>&1
-  rm -rf /opt/var/pgvault.buildup 1>/dev/null 2>&1
-  rm -rf /opt/var/program.temp 1>/dev/null 2>&1
-  rm -rf /opt/var/app.list 1>/dev/null 2>&1
-  rm -rf /opt/var/pgvault.output 1>/dev/null 2>&1
-  touch /opt/var/pgvault.output
-  touch /opt/var/program.temp
-  touch /opt/var/app.list
-  touch /opt/var/pgvault.buildup
-  touch /opt/var/pgvault.output
-  touch /opt/var/rclone.size
-  space=$(cat /opt/var/data.location)
+  rm -rf /var/pgblitz/pgvault.output 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/pgvault.buildup 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/program.temp 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/app.list 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/pgvault.output 1>/dev/null 2>&1
+  touch /var/pgblitz/pgvault.output
+  touch /var/pgblitz/program.temp
+  touch /var/pgblitz/app.list
+  touch /var/pgblitz/pgvault.buildup
+  touch /var/pgblitz/pgvault.output
+  touch /var/pgblitz/rclone.size
+  space=$(cat /var/pgblitz/data.location)
   # To Get Used Space
   used=$(df -h /opt/appdata/pgblitz | tail -n +2 | awk '{print $3}')
   # To Get All Space
@@ -33,9 +33,9 @@ initial () {
 }
 
 initial2 () {
-  path=$(cat /opt/var/server.hd.path)
-  tarlocation=$(cat /opt/var/data.location)
-  program_size=$(cat /opt/var/rclone.size)
+  path=$(cat /var/pgblitz/server.hd.path)
+  tarlocation=$(cat /var/pgblitz/data.location)
+  program_size=$(cat /var/pgblitz/rclone.size)
   program_var=$(cat /tmp/program_var)
   server_id=wordpress
 }
@@ -58,73 +58,73 @@ rclonelist () {
 }
 
 pgboxrecall () {
-  ls -p /opt/pgblitz/containers | grep -v / > /opt/var/pgvault.apprecall
+  ls -p /opt/pgblitz/containers | grep -v / > /var/pgblitz/pgvault.apprecall
   while read p; do
-    sed -i "/^$p\b/Id" /opt/var/pgvault.apprecall
+    sed -i "/^$p\b/Id" /var/pgblitz/pgvault.apprecall
   done </opt/pgblitz/menu/pgvault/exempt.list
 
   while read p; do
-    sed -i "/^$p\b/Id" /opt/var/pgvault.apprecall
-    basename "$p" .yml >> /opt/var/pgvault.apprecall
-  done </opt/var/pgvault.apprecall
+    sed -i "/^$p\b/Id" /var/pgblitz/pgvault.apprecall
+    basename "$p" .yml >> /var/pgblitz/pgvault.apprecall
+  done </var/pgblitz/pgvault.apprecall
 }
 
 mathprime () {
   ### List Out Apps In Readable Order (One's Not Installed)
   num=0
-  rm -rf /opt/var/program.temp 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/program.temp 1>/dev/null 2>&1
   while read p; do
-    echo -n $p >> /opt/var/program.temp
-    echo -n " " >> /opt/var/program.temp
+    echo -n $p >> /var/pgblitz/program.temp
+    echo -n " " >> /var/pgblitz/program.temp
     num=$[num+1]
     if [ "$num" == 7 ]; then
       num=0
-      echo " " >> /opt/var/program.temp
+      echo " " >> /var/pgblitz/program.temp
     fi
-  done </opt/var/pgvault.apprecall
+  done </var/pgblitz/pgvault.apprecall
 }
 
 ################################################ FOR BACKUP - START
 apprecall () {
-  tree -d -L 1 /opt/appdata/wordpress | awk '{print $2}' | tail -n +2 | head -n -2 > /opt/var/pgvault.apprecall
+  tree -d -L 1 /opt/appdata/wordpress | awk '{print $2}' | tail -n +2 | head -n -2 > /var/pgblitz/pgvault.apprecall
   ### Blank Out Temp List
-  rm -rf /opt/var/program.temp && touch /opt/var/program.temp
+  rm -rf /var/pgblitz/program.temp && touch /var/pgblitz/program.temp
   mathprime
 }
 
 buildup () {
-  echo "$typed" >> /opt/var/pgvault.buildup
-  sed -i "/^$typed\b/Id" /opt/var/pgvault.apprecall
+  echo "$typed" >> /var/pgblitz/pgvault.buildup
+  sed -i "/^$typed\b/Id" /var/pgblitz/pgvault.apprecall
 
   num=0
-  rm -rf /opt/var/pgvault.output 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/pgvault.output 1>/dev/null 2>&1
   while read p; do
-  echo -n $p >> /opt/var/pgvault.output
-  echo -n " " >> /opt/var/pgvault.output
+  echo -n $p >> /var/pgblitz/pgvault.output
+  echo -n " " >> /var/pgblitz/pgvault.output
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /opt/var/pgvault.output
+    echo " " >> /var/pgblitz/pgvault.output
   fi
-  done </opt/var/pgvault.buildup
+  done </var/pgblitz/pgvault.buildup
 
   mathprime
   vaultbackup
 }
 
 buildup2 () {
-  echo "$typed" >> /opt/var/pgvault.buildup
-  sed -i "/^$typed\b/Id" /opt/var/pgvault.apprecall
+  echo "$typed" >> /var/pgblitz/pgvault.buildup
+  sed -i "/^$typed\b/Id" /var/pgblitz/pgvault.apprecall
 
   num=0
-  rm -rf /opt/var/pgvault.output 1>/dev/null 2>&1
+  rm -rf /var/pgblitz/pgvault.output 1>/dev/null 2>&1
   while read p; do
-  echo -n $p >> /opt/var/pgvault.output
-  echo -n " " >> /opt/var/pgvault.output
+  echo -n $p >> /var/pgblitz/pgvault.output
+  echo -n " " >> /var/pgblitz/pgvault.output
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /opt/var/pgvault.output
+    echo " " >> /var/pgblitz/pgvault.output
   fi
-  done </opt/var/pgvault.buildup
+  done </var/pgblitz/pgvault.buildup
 
   mathprime
   vaultrestore
@@ -152,7 +152,7 @@ EOF
   backup_process
 
   sleep 2
-  done </opt/var/pgvault.buildup
+  done </var/pgblitz/pgvault.buildup
   final
 }
 
@@ -181,8 +181,8 @@ tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 
-path=$(cat /opt/var/server.hd.path)
-tarlocation=$(cat /opt/var/data.location)
+path=$(cat /var/pgblitz/server.hd.path)
+tarlocation=$(cat /var/pgblitz/data.location)
 server_id=wordpress
 
 tar \
@@ -242,7 +242,7 @@ echo $p > /tmp/program_var
 restore_process
 
 sleep 2
-done </opt/var/pgvault.buildup
+done </var/pgblitz/pgvault.buildup
 final
 }
 
@@ -330,7 +330,7 @@ EOF
 sleep 5
 docker restart wp-$program_var/mysql
 
-wpdomain=$(cat /opt/var/server.domain)
+wpdomain=$(cat /var/pgblitz/server.domain)
 
 tee <<-EOF
 
@@ -348,8 +348,8 @@ rm -rf ${tarlocation}/${program_var}.tar 1>/dev/null 2>&1
 ##################################################### START - Backup Interface
 vaultbackup () {
 ### List Out Apps In Readable Order (One's Not Installed)
-notrun=$(cat /opt/var/program.temp)
-buildup=$(cat /opt/var/pgvault.output)
+notrun=$(cat /var/pgblitz/program.temp)
+buildup=$(cat /var/pgblitz/pgvault.output)
 
 if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
@@ -374,13 +374,13 @@ read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed < /dev/tty
 if [ "$typed" == "deploy" ]; then backup_start; fi
 if [ "$typed" == "exit" ]; then exit; fi
 
-current2=$(cat /opt/var/pgvault.buildup | grep "\<$typed\>")
+current2=$(cat /var/pgblitz/pgvault.buildup | grep "\<$typed\>")
 if [ "$current2" != "" ]; then
 queued
 vaultbackup; fi
 
-cat /opt/var/pgvault.buildup > /tmp/appcheck.5
-cat /opt/var/pgvault.apprecall >> /tmp/appcheck.5
+cat /var/pgblitz/pgvault.buildup > /tmp/appcheck.5
+cat /var/pgblitz/pgvault.apprecall >> /tmp/appcheck.5
 current1=$(cat /tmp/appcheck.5 | grep "\<$typed\>")
 if [ "$current1" == "" ]; then badinput && vaultbackup; fi
 
@@ -390,8 +390,8 @@ buildup
 #
 ##################################################### START - Restore Interface
 vaultrestore () {
-notrun=$(cat /opt/var/program.temp)
-buildup=$(cat /opt/var/pgvault.output)
+notrun=$(cat /var/pgblitz/program.temp)
+buildup=$(cat /var/pgblitz/pgvault.output)
 
 if [ "$buildup" == "" ]; then buildup="NONE"; fi
 tee <<-EOF
@@ -416,13 +416,13 @@ read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed < /dev/tty
 if [ "$typed" == "deploy" ]; then restore_start; fi
 if [ "$typed" == "exit" ]; then exit; fi
 
-current2=$(cat /opt/var/pgvault.buildup | grep "\<$typed\>")
+current2=$(cat /var/pgblitz/pgvault.buildup | grep "\<$typed\>")
 if [ "$current2" != "" ]; then
 queued
 vaultrestore; fi
 
-cat /opt/var/pgvault.buildup > /tmp/appcheck.5
-cat /opt/var/pgvault.apprecall >> /tmp/appcheck.5
+cat /var/pgblitz/pgvault.buildup > /tmp/appcheck.5
+cat /var/pgblitz/pgvault.apprecall >> /tmp/appcheck.5
 current1=$(cat /tmp/appcheck.5 | grep "\<$typed\>")
 if [ "$current1" == "" ]; then badinput && vaultrestore; fi
 
@@ -432,19 +432,19 @@ buildup2
 serverprime () {
   echo wordpress > /tmp/server.select
 
-  ls -l  /mnt/gdrive/pgblitz/backup/wordpress | awk '{print $9}' | tail -n +2 > /opt/var/pgvault.restoreapps
+  ls -l  /mnt/gdrive/pgblitz/backup/wordpress | awk '{print $9}' | tail -n +2 > /var/pgblitz/pgvault.restoreapps
 
   ### Blank Out Temp List
-  rm -rf /opt/var/pgvault.apprecall 1>/dev/null 2>&1
-  touch /opt/var/pgvault.apprecall
+  rm -rf /var/pgblitz/pgvault.apprecall 1>/dev/null 2>&1
+  touch /var/pgblitz/pgvault.apprecall
 
   while read p; do
-    basename "$p" .tar >> /opt/var/pgvault.apprecall
-  done </opt/var/pgvault.restoreapps
+    basename "$p" .tar >> /var/pgblitz/pgvault.apprecall
+  done </var/pgblitz/pgvault.restoreapps
 
   ### Blank Out Temp List
-  rm -rf /opt/var/program.temp 1>/dev/null 2>&1
-  touch /opt/var/program.temp
+  rm -rf /var/pgblitz/program.temp 1>/dev/null 2>&1
+  touch /var/pgblitz/program.temp
   mathprime
 }
 

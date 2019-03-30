@@ -9,17 +9,17 @@
 # FUNCTIONS BELOW ##############################################################
 mainbanner () {
 
-touch /opt/var/auth.bypass
+touch /var/pgblitz/auth.bypass
 
-a7=$(cat /opt/var/auth.bypass)
+a7=$(cat /var/pgblitz/auth.bypass)
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
-echo good > /opt/var/auth.bypass
+echo good > /var/pgblitz/auth.bypass
 
 if [[ "$a7" != "good" ]]; then domaincheck7; fi
-echo good > /opt/var/auth.bypass
+echo good > /var/pgblitz/auth.bypass
 
 
-tld=$(cat /opt/var/tld.program)
+tld=$(cat /var/pgblitz/tld.program)
 tee <<-EOF
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -120,7 +120,7 @@ echo "$subdomain" > /tmp/wp_id
 ansible-playbook /opt/pgpress/db.yml
 ansible-playbook /opt/pgpress/wordpress.yml
 
-wpdomain=$(cat /opt/var/server.domain)
+wpdomain=$(cat /var/pgblitz/server.domain)
 
 tee <<-EOF
 
@@ -136,26 +136,26 @@ read -p '💬 Done? | Press [ENTER] ' typed < /dev/tty
 
 viewcontainers () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /opt/var/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
 
-file="/opt/var/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /opt/var/tmp.format.containerlist; fi
-touch /opt/var/tmp.format.containerlist
-cat /opt/var/tmp.format.containerlist | cut -c 2- > /opt/var/tmp.format.containerlist
+file="/var/pgblitz/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
+touch /var/pgblitz/tmp.format.containerlist
+cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
 
 num=0
 while read p; do
   p="${p:3}"
-  echo -n $p >> /opt/var/tmp.format.containerlist
-  echo -n " " >> /opt/var/tmp.format.containerlist
+  echo -n $p >> /var/pgblitz/tmp.format.containerlist
+  echo -n " " >> /var/pgblitz/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /opt/var/tmp.format.containerlist
+    echo " " >> /var/pgblitz/tmp.format.containerlist
   fi
-done </opt/var/tmp.containerlist
+done </var/pgblitz/tmp.containerlist
 
-containerlist=$(cat /opt/var/tmp.format.containerlist)
+containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -175,27 +175,27 @@ read -p '💬 Done Viewing? | Press [ENTER] ' typed < /dev/tty
 
 destroycontainers () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /opt/var/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
 
-file="/opt/var/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /opt/var/tmp.format.containerlist; fi
-touch /opt/var/tmp.format.containerlist
-cat /opt/var/tmp.format.containerlist | cut -c 2- > /opt/var/tmp.format.containerlist
+file="/var/pgblitz/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
+touch /var/pgblitz/tmp.format.containerlist
+cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
 
 num=0
 while read p; do
 
   p="${p:3}"
-  echo -n $p >> /opt/var/tmp.format.containerlist
-  echo -n " " >> /opt/var/tmp.format.containerlist
+  echo -n $p >> /var/pgblitz/tmp.format.containerlist
+  echo -n " " >> /var/pgblitz/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /opt/var/tmp.format.containerlist
+    echo " " >> /var/pgblitz/tmp.format.containerlist
   fi
-done </opt/var/tmp.containerlist
+done </var/pgblitz/tmp.containerlist
 
-containerlist=$(cat /opt/var/tmp.format.containerlist)
+containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -243,26 +243,26 @@ mainbanner
 
 tldportion () {
 
-docker ps --format '{{.Names}}' | grep "wp-" > /opt/var/tmp.containerlist
+docker ps --format '{{.Names}}' | grep "wp-" > /var/pgblitz/tmp.containerlist
 
-file="/opt/var/tmp.format.containerlist"
-if [ ! -e "$file" ]; then rm -rf /opt/var/tmp.format.containerlist; fi
-touch /opt/var/tmp.format.containerlist
-cat /opt/var/tmp.format.containerlist | cut -c 2- > /opt/var/tmp.format.containerlist
+file="/var/pgblitz/tmp.format.containerlist"
+if [ ! -e "$file" ]; then rm -rf /var/pgblitz/tmp.format.containerlist; fi
+touch /var/pgblitz/tmp.format.containerlist
+cat /var/pgblitz/tmp.format.containerlist | cut -c 2- > /var/pgblitz/tmp.format.containerlist
 
 num=0
 while read p; do
   p="${p:3}"
-  echo -n $p >> /opt/var/tmp.format.containerlist
-  echo -n " " >> /opt/var/tmp.format.containerlist
+  echo -n $p >> /var/pgblitz/tmp.format.containerlist
+  echo -n " " >> /var/pgblitz/tmp.format.containerlist
   num=$[num+1]
   if [ "$num" == 7 ]; then
     num=0
-    echo " " >> /opt/var/tmp.format.containerlist
+    echo " " >> /var/pgblitz/tmp.format.containerlist
   fi
-done </opt/var/tmp.containerlist
+done </var/pgblitz/tmp.containerlist
 
-containerlist=$(cat /opt/var/tmp.format.containerlist)
+containerlist=$(cat /var/pgblitz/tmp.format.containerlist)
 
 tee <<-EOF
 
@@ -312,8 +312,8 @@ EOF
 sleep 1.5
 
 # Sets Old Top Level Domain
-cat /opt/var/tld.program > /opt/var/old.program
-echo "$typed" > /opt/var/tld.program
+cat /var/pgblitz/tld.program > /var/pgblitz/old.program
+echo "$typed" > /var/pgblitz/tld.program
 
 tee <<-EOF
 
@@ -324,11 +324,11 @@ EOF
 
 sleep 1.5
 
-old=$(cat /opt/var/old.program)
-new=$(cat /opt/var/tld.program)
+old=$(cat /var/pgblitz/old.program)
+new=$(cat /var/pgblitz/tld.program)
 
-touch /opt/var/tld.type
-tldtype=$(cat /opt/var/tld.type)
+touch /var/pgblitz/tld.type
+tldtype=$(cat /var/pgblitz/tld.type)
 
 if [[ "$old" != "$new" && "$old" != "NOT-SET" ]]; then
 
@@ -348,7 +348,7 @@ echo "$new" > /tmp/wp_id
 ansible-playbook /opt/pgpress/wordpress.yml
 
 # Notifies that TLD is WordPress
-echo "wordpress" > /opt/var/tld.type
+echo "wordpress" > /var/pgblitz/tld.type
 
 tee <<-EOF
 
@@ -364,8 +364,8 @@ read -p 'Press [ENTER] ' typed < /dev/tty
 }
 
 domaincheck7() {
-  domaincheck=$(cat /opt/var/server.domain)
-  touch /opt/var/server.domain
+  domaincheck=$(cat /var/pgblitz/server.domain)
+  touch /var/pgblitz/server.domain
   touch /tmp/portainer.check
   rm -r /tmp/portainer.check
   wget -q "https://portainer.${domaincheck}" -O /tmp/portainer.check

@@ -24,11 +24,11 @@
 
     # CORE (MANDATORY) ############################################################
     - name: 'Register TLD'
-      shell: 'cat /opt/var/tld.program'
+      shell: 'cat /var/pgblitz/tld.program'
       register: toplevel
 
     - name: Register Domain
-      shell: 'cat /opt/var/server.domain'
+      shell: 'cat /var/pgblitz/server.domain'
       register: domain
 
     - name: 'If Fact Matches - Enable TLD'

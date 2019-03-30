@@ -8,9 +8,9 @@
 source /opt/pgblitz/menu/functions/functions.sh
 source /opt/pgpress/pgvault/pgvault.func
 
-file="/opt/var/restore.id"
+file="/var/pgblitz/restore.id"
 if [ ! -e "$file" ]; then
-  echo "[NOT-SET]" > /opt/var/restore.id
+  echo "[NOT-SET]" > /var/pgblitz/restore.id
 fi
 
 initial
