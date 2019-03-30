@@ -54,8 +54,8 @@ case $typed in
     if [ ! -d "/mnt/gdrive/plexguide/backup/wordpress" ]; then
 
       # Makes a Test Directory for Checks
-      rclone mkdir --config /opt/appdata/pgblitz/rclone.conf gdrive:/plexguide/backup/wordpress
-      rclonecheck=$(rclone lsd --config /opt/appdata/pgblitz/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
+      rclone mkdir --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/wordpress
+      rclonecheck=$(rclone lsd --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/ | grep wordpress)
       sleep 1
 
         # Conducts a Check Again; if fails; then exits
