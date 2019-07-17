@@ -7,5 +7,5 @@
 ################################################################################
 ---
 - name: WordPress ID
-  shell: "cat /tmp/wp_id"
+  shell: 'cat /tmp/wp_id'
   register: wp_id

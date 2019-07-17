@@ -9,7 +9,6 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-
     # WP CORE (MANDATORY) #########################################################
     - name: 'Including PG Press Core'
       include_tasks: '/opt/pgpress/pgpresscore.yml'
@@ -46,7 +45,7 @@
       set_fact:
         pg_labels:
           traefik.enable: 'true'
-          traefik.backend: "{{pgrole}}"
+          traefik.backend: '{{pgrole}}'
           traefik.port: '80'
           traefik.frontend.rule: 'Host:{{wp_id.stdout}}.{{domain.stdout}},{{tldset}}'
           traefik.docker.network: 'plexguide'
@@ -62,7 +61,7 @@
         pg_env:
           PUID: 1000
           PGID: 1000
-          WORDPRESS_DB_PASSWORD: "mYsupERbigPas2WorD"
+          WORDPRESS_DB_PASSWORD: 'mYsupERbigPas2WorD'
 
     # MAIN DEPLOYMENT #############################################################
     - name: 'Deploying {{pgrole}}'
@@ -71,13 +70,13 @@
         image: '{{image}}'
         pull: yes
         links:
-          - "wpdb-{{wp_id.stdout}}:mysql"
+          - 'wpdb-{{wp_id.stdout}}:mysql'
         volumes: '{{pg_volumes}}'
         env: '{{pg_env}}'
         restart_policy: unless-stopped
         networks:
           - name: plexguide
             aliases:
-              - "wp-{{wp_id.stdout}}"
+              - 'wp-{{wp_id.stdout}}'
         state: started
         labels: '{{pg_labels}}'

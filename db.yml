@@ -9,7 +9,6 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-
     # WP CORE (MANDATORY) #########################################################
     - name: 'Including PG Press Core'
       include_tasks: '/opt/pgpress/pgpresscore.yml'
@@ -19,22 +18,22 @@
         pgrole: '{{wp_id.stdout}}'
 
     # FACTS #######################################################################
-    - name: "Deploy wpdb-{{wp_id.stdout}} Database"
+    - name: 'Deploy wpdb-{{wp_id.stdout}} Database'
       docker_container:
-        name: "wpdb-{{pgrole}}"
+        name: 'wpdb-{{pgrole}}'
         image: mariadb
         pull: yes
         expose: 3306
         #published_ports:
         #  - "127.0.0.1:10{{wp_port.stdout}}:3306"
         volumes:
-          - "/etc/localtime:/etc/localtime:ro"
-          - "/opt/appdata/wordpress/{{wp_id.stdout}}/{{wp_id.stdout}}-db:/var/lib/mysql"
+          - '/etc/localtime:/etc/localtime:ro'
+          - '/opt/appdata/wordpress/{{wp_id.stdout}}/{{wp_id.stdout}}-db:/var/lib/mysql'
         env:
-          MYSQL_ROOT_PASSWORD: "mYsupERbigPas2WorD"
+          MYSQL_ROOT_PASSWORD: 'mYsupERbigPas2WorD'
         networks:
           - name: plexguide
             aliases:
-              - "wpdb-{{wp_id.stdout}}"
+              - 'wpdb-{{wp_id.stdout}}'
         restart_policy: always
         state: started
