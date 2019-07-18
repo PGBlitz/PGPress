@@ -108,11 +108,11 @@ turned to operate at the TLD (Top Level Domain). Keep it all lowercase and
 with no breaks in space.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 Quitting? TYPE > q or exit
+💬 To quit, type >>> z or exit
 EOF
   read -p '↘️  Type Subdomain | Press [ENTER]: ' subdomain </dev/tty
 
-  if [ "$subdomain" == "exit" ]; then mainbanner; fi
+  if [[ "$subdomain" == "exit" || "$subdomain" == "Exit" || "$subdomain" == "EXIT" || "$subdomain" == "z" || "$subdomain" == "Z" ]]; then mainbanner; fi
   if [ "$subdomain" == "" ]; then deploywp; fi
 
   tee <<-EOF
@@ -216,12 +216,12 @@ destroycontainers() {
 $containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️  Quitting? TYPE > q or exit
+↘️  To quit, type >>> z or exit
 EOF
 
   read -p '💬 Destory Which Container? | Press [ENTER]: ' typed </dev/tty
 
-  if [[ "$typed" == "exit" ] || [ "$typed" == "q" ] || [ "$typed" == "Q" ]]; then mainbanner; fi
+  if [[ "$typed" == "exit" || "$typed" == "Exit" || "$typed" == "EXIT" || "$typed" == "z" || "$typed" == "Z" ]]; then mainbanner; fi
   if [[ "$typed" == "" ]]; then destroycontainers; fi
 
   destroycheck=$(echo $containerlist | grep "$typed")
@@ -297,12 +297,12 @@ EOF
 $containerlist
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 Quitting? TYPE > q or exit
+💬 To quit, type >>> z or exit
 EOF
 
   read -p '💪 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed </dev/tty
 
-  if [[ "$typed" == "exit" ] || [ "$typed" == "q" ] || [ "$typed" == "Q" ]]; then mainbanner; fi
+  if [[ "$typed" == "exit" || "$typed" == "Exit" || "$typed" == "EXIT" || "$typed" == "z" || "$typed" == "Z" ]]; then mainbanner; fi
 
   destroycheck=$(echo $containerlist | grep "$typed")
 
