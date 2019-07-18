@@ -367,12 +367,12 @@ $notrun
 $buildup
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️ Quitting? TYPE > exit | 💪 Ready to Backup? TYPE > deploy
+↘️ Quitting? TYPE > q or exit | 💪 Ready to Backup? TYPE > deploy
 EOF
   read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed </dev/tty
 
   if [ "$typed" == "deploy" ]; then backup_start; fi
-  if [ "$typed" == "exit" ]; then exit; fi
+  if [ "$typed" == "exit" ] || [ "$typed" == "q" ] || [ "$typed" == "Q" ]; then exit; fi
 
   current2=$(cat /var/plexguide/pgvault.buildup | grep "\<$typed\>")
   if [ "$current2" != "" ]; then
@@ -410,12 +410,12 @@ $notrun
 $buildup
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️ Quitting? TYPE > exit | 💪 Ready to Backup? TYPE > deploy
+↘️ Quitting? TYPE > q or exit | 💪 Ready to Backup? TYPE > deploy
 EOF
   read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed </dev/tty
 
   if [ "$typed" == "deploy" ]; then restore_start; fi
-  if [ "$typed" == "exit" ]; then exit; fi
+  if [ "$typed" == "exit" ] || [ "$typed" == "q" ] || [ "$typed" == "Q" ]; then exit; fi
 
   current2=$(cat /var/plexguide/pgvault.buildup | grep "\<$typed\>")
   if [ "$current2" != "" ]; then
