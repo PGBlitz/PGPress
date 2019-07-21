@@ -366,8 +366,11 @@ $notrun
 
 $buildup
 
+[A] Backup
+[Z] Exit
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️ To quit, type >>> z or exit | 💪 Ready to Backup? type > backup
+
 EOF
   read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed </dev/tty
 
@@ -409,8 +412,11 @@ $notrun
 
 $buildup
 
+[A] Backup
+[Z] Exit
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️ To quit, type >>> z or exit | 💪 Ready to Backup? type >>> restore
+
 EOF
   read -p '🌍 Type APP for QUEUE | Press [ENTER]: ' typed </dev/tty
 
@@ -461,9 +467,11 @@ primaryinterface() {
 
 [1] Data Backup
 [2] Data Restore
+
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 EOF
   read -p 'Type a Number | Press [ENTER]: ' typed </dev/tty
 

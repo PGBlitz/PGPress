@@ -32,9 +32,11 @@ mainbanner() {
 [3] WordPress: Backup & Restore
 [4] WordPress: Set a Top Level Domain - [$tld]
 [5] WordPress: Destroy a Website
+
 [Z] Exit
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 EOF
 
   read -p 'Type a Selection | Press [ENTER] ' typed </dev/tty
@@ -107,8 +109,10 @@ Type the name for the subdomain wordpress instance. Instance can later be
 turned to operate at the TLD (Top Level Domain). Keep it all lowercase and
 with no breaks in space.
 
+[Z] Exit
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 To quit, type >>> z or exit
+
 EOF
   read -p '↘️  Type Subdomain | Press [ENTER]: ' subdomain </dev/tty
 
@@ -215,8 +219,10 @@ destroycontainers() {
 
 $containerlist
 
+[Z] Exit
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-↘️  To quit, type >>> z or exit
+
 EOF
 
   read -p '💬 Destory Which Container? | Press [ENTER]: ' typed </dev/tty
@@ -296,8 +302,10 @@ EOF
 
 $containerlist
 
+[Z] Exit
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 To quit, type >>> z or exit
+
 EOF
 
   read -p '💪 Type WordPress Site for Top Level Domain | Press [ENTER]: ' typed </dev/tty
