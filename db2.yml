@@ -23,7 +23,7 @@
       docker_container:
         name: "wpdb-{{pgrole}}"
         image: mariadb
-        pull: yes
+        pull: no
         expose: 3306
         #published_ports:
         #  - "127.0.0.1:10{{wp_port.stdout}}:3306"
